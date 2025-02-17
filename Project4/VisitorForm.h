@@ -35,7 +35,8 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ lblTitle;
+
 	protected:
 
 	private:
@@ -53,37 +54,39 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(VisitorForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->lblTitle = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(-1, -2);
+			this->pictureBox1->Location = System::Drawing::Point(-1, 0);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(802, 504);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
-			// label1
+			// lblTitle
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblTitle->AutoSize = true;
+			this->lblTitle->BackColor = System::Drawing::Color::Transparent;
+			this->lblTitle->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(156, 62);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(484, 75);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"VISITOR\'S FORM";
+			this->lblTitle->ForeColor = System::Drawing::Color::White;
+			this->lblTitle->Location = System::Drawing::Point(156, 62);
+			this->lblTitle->Name = L"lblTitle";
+			this->lblTitle->Size = System::Drawing::Size(484, 75);
+			this->lblTitle->TabIndex = 1;
+			this->lblTitle->Text = L"VISITOR\'S FORM";
 			// 
 			// VisitorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->lblTitle);
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"VisitorForm";
