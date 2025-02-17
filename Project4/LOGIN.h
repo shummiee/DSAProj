@@ -39,19 +39,19 @@ namespace Project4 {
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
-	private: System::Windows::Forms::TextBox^ textBox1;
+
 	private: System::Windows::Forms::TextBox^ txtName;
-	private: System::Windows::Forms::TextBox^ txtEmail;
-	private: System::Windows::Forms::TextBox^ txtPhone;
+
+
 	private: System::Windows::Forms::TextBox^ txtPassword;
 
 
 
 
-	private: System::Windows::Forms::Label^ lblId;
+
 	private: System::Windows::Forms::Label^ lblName;
-	private: System::Windows::Forms::Label^ lblEmail;
-	private: System::Windows::Forms::Label^ lblPhone;
+
+
 	private: System::Windows::Forms::Label^ lblPass;
 	private: System::Windows::Forms::Button^ btnLogin;
 	private: System::Windows::Forms::Button^ btnCancel;
@@ -80,15 +80,9 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LOGIN::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
-			this->txtEmail = (gcnew System::Windows::Forms::TextBox());
-			this->txtPhone = (gcnew System::Windows::Forms::TextBox());
 			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
-			this->lblId = (gcnew System::Windows::Forms::Label());
 			this->lblName = (gcnew System::Windows::Forms::Label());
-			this->lblEmail = (gcnew System::Windows::Forms::Label());
-			this->lblPhone = (gcnew System::Windows::Forms::Label());
 			this->lblPass = (gcnew System::Windows::Forms::Label());
 			this->btnLogin = (gcnew System::Windows::Forms::Button());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
@@ -109,110 +103,45 @@ namespace Project4 {
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
-			// textBox1
-			// 
-			this->textBox1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->textBox1->Location = System::Drawing::Point(433, 92);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(256, 22);
-			this->textBox1->TabIndex = 1;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &LOGIN::textBox1_TextChanged);
-			// 
 			// txtName
 			// 
 			this->txtName->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->txtName->Location = System::Drawing::Point(433, 149);
+			this->txtName->Location = System::Drawing::Point(468, 187);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(256, 22);
+			this->txtName->Size = System::Drawing::Size(235, 22);
 			this->txtName->TabIndex = 2;
-			// 
-			// txtEmail
-			// 
-			this->txtEmail->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->txtEmail->Location = System::Drawing::Point(433, 206);
-			this->txtEmail->Name = L"txtEmail";
-			this->txtEmail->Size = System::Drawing::Size(256, 22);
-			this->txtEmail->TabIndex = 3;
-			// 
-			// txtPhone
-			// 
-			this->txtPhone->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->txtPhone->Location = System::Drawing::Point(433, 263);
-			this->txtPhone->Name = L"txtPhone";
-			this->txtPhone->Size = System::Drawing::Size(256, 22);
-			this->txtPhone->TabIndex = 4;
-			this->txtPhone->TextChanged += gcnew System::EventHandler(this, &LOGIN::textBox4_TextChanged);
 			// 
 			// txtPassword
 			// 
 			this->txtPassword->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->txtPassword->Location = System::Drawing::Point(433, 319);
+			this->txtPassword->Location = System::Drawing::Point(468, 273);
 			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(256, 22);
+			this->txtPassword->Size = System::Drawing::Size(235, 22);
 			this->txtPassword->TabIndex = 5;
-			// 
-			// lblId
-			// 
-			this->lblId->AutoSize = true;
-			this->lblId->BackColor = System::Drawing::Color::Transparent;
-			this->lblId->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblId->ForeColor = System::Drawing::Color::White;
-			this->lblId->Location = System::Drawing::Point(430, 70);
-			this->lblId->Name = L"lblId";
-			this->lblId->Size = System::Drawing::Size(35, 18);
-			this->lblId->TabIndex = 6;
-			this->lblId->Text = L"ID:";
 			// 
 			// lblName
 			// 
 			this->lblName->AutoSize = true;
 			this->lblName->BackColor = System::Drawing::Color::Transparent;
-			this->lblName->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblName->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblName->ForeColor = System::Drawing::Color::White;
-			this->lblName->Location = System::Drawing::Point(430, 125);
+			this->lblName->Location = System::Drawing::Point(444, 145);
 			this->lblName->Name = L"lblName";
-			this->lblName->Size = System::Drawing::Size(53, 18);
+			this->lblName->Size = System::Drawing::Size(68, 25);
 			this->lblName->TabIndex = 7;
 			this->lblName->Text = L"Name:";
-			// 
-			// lblEmail
-			// 
-			this->lblEmail->AutoSize = true;
-			this->lblEmail->BackColor = System::Drawing::Color::Transparent;
-			this->lblEmail->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblEmail->ForeColor = System::Drawing::Color::White;
-			this->lblEmail->Location = System::Drawing::Point(430, 183);
-			this->lblEmail->Name = L"lblEmail";
-			this->lblEmail->Size = System::Drawing::Size(71, 18);
-			this->lblEmail->TabIndex = 8;
-			this->lblEmail->Text = L"E-mail:";
-			// 
-			// lblPhone
-			// 
-			this->lblPhone->AutoSize = true;
-			this->lblPhone->BackColor = System::Drawing::Color::Transparent;
-			this->lblPhone->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblPhone->ForeColor = System::Drawing::Color::White;
-			this->lblPhone->Location = System::Drawing::Point(430, 239);
-			this->lblPhone->Name = L"lblPhone";
-			this->lblPhone->Size = System::Drawing::Size(80, 18);
-			this->lblPhone->TabIndex = 9;
-			this->lblPhone->Text = L"Phone #:";
 			// 
 			// lblPass
 			// 
 			this->lblPass->AutoSize = true;
 			this->lblPass->BackColor = System::Drawing::Color::Transparent;
-			this->lblPass->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblPass->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblPass->ForeColor = System::Drawing::Color::White;
-			this->lblPass->Location = System::Drawing::Point(430, 295);
+			this->lblPass->Location = System::Drawing::Point(444, 232);
 			this->lblPass->Name = L"lblPass";
-			this->lblPass->Size = System::Drawing::Size(89, 18);
+			this->lblPass->Size = System::Drawing::Size(101, 25);
 			this->lblPass->TabIndex = 10;
 			this->lblPass->Text = L"Password:";
 			// 
@@ -222,14 +151,14 @@ namespace Project4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(151)));
 			this->btnLogin->FlatAppearance->BorderSize = 0;
 			this->btnLogin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnLogin->Font = (gcnew System::Drawing::Font(L"Monospac821 BT", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnLogin->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnLogin->ForeColor = System::Drawing::Color::Transparent;
-			this->btnLogin->Location = System::Drawing::Point(433, 364);
+			this->btnLogin->Location = System::Drawing::Point(446, 364);
 			this->btnLogin->Name = L"btnLogin";
 			this->btnLogin->Size = System::Drawing::Size(99, 35);
 			this->btnLogin->TabIndex = 11;
-			this->btnLogin->Text = L"Login";
+			this->btnLogin->Text = L"LOGIN";
 			this->btnLogin->UseVisualStyleBackColor = false;
 			this->btnLogin->Click += gcnew System::EventHandler(this, &LOGIN::btnLogin_Click);
 			// 
@@ -239,12 +168,14 @@ namespace Project4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(151)));
 			this->btnCancel->FlatAppearance->BorderSize = 0;
 			this->btnCancel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnCancel->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnCancel->ForeColor = System::Drawing::Color::White;
-			this->btnCancel->Location = System::Drawing::Point(590, 364);
+			this->btnCancel->Location = System::Drawing::Point(604, 364);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(99, 35);
 			this->btnCancel->TabIndex = 12;
-			this->btnCancel->Text = L"Cancel";
+			this->btnCancel->Text = L"CANCEL";
 			this->btnCancel->UseVisualStyleBackColor = false;
 			// 
 			// btnExit
@@ -269,15 +200,9 @@ namespace Project4 {
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnLogin);
 			this->Controls->Add(this->lblPass);
-			this->Controls->Add(this->lblPhone);
-			this->Controls->Add(this->lblEmail);
 			this->Controls->Add(this->lblName);
-			this->Controls->Add(this->lblId);
 			this->Controls->Add(this->txtPassword);
-			this->Controls->Add(this->txtPhone);
-			this->Controls->Add(this->txtEmail);
 			this->Controls->Add(this->txtName);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"LOGIN";
