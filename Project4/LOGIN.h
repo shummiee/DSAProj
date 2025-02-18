@@ -220,14 +220,8 @@ namespace Project4 {
 private: System::Void LOGIN_Load(System::Object^ sender, System::EventArgs^ e) {
 	lblName->Parent = pictureBox1;
 	lblName->BackColor = System::Drawing::Color::Transparent;
-	lblId->Parent = pictureBox1;
-	lblId->BackColor = System::Drawing::Color::Transparent;
-	lblEmail->Parent = pictureBox1;
-	lblEmail->BackColor = System::Drawing::Color::Transparent;
 	lblPass->Parent = pictureBox1;
 	lblPass->BackColor = System::Drawing::Color::Transparent;
-	lblPhone->Parent = pictureBox1;
-	lblPhone->BackColor = System::Drawing::Color::Transparent;
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -244,24 +238,26 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 
 	try {
-		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;";
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;"; //Edited
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE name=@name AND password=@password; ";
+		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password; "; //Edited
 		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@name", username);
+		command.Parameters->AddWithValue("@firstname", username);
 		command.Parameters->AddWithValue("@password", password);
 
 		SqlDataReader^ reader = command.ExecuteReader();
 		if (reader->Read()) {
 			user = gcnew User;
 			user->Id = reader->GetInt32(0);
-			user->Name = reader->GetString(1);
-			user->Email = reader->GetString(2);
-			user->Phone = reader->GetString(3);
+			user->FirstName = reader->GetString(1);
+			user->LastName = reader->GetString(2);
+			user->Username = reader->GetString(3);
 			user->Password = reader->GetString(4);
-			user->Role = reader->GetString(5);
+			user->Phone = reader->GetString(5);
+			user->Address = reader->GetString(6);
+			//Edited
 
 			this->Close();
 

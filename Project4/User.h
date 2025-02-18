@@ -5,9 +5,12 @@ using namespace System;
 public ref class User {
 public:
 	int Id;
-	String^ Name;
-	String^ Email;
-	String^ Phone;
+	String^ FirstName;
+	String^ LastName;
+	String^ Username;
 	String^ Password;
-	String^ Role;
+	String^ Phone;
+	String^ Address;
 };
+
+//Kae: Edited the ref class to fit my sql
