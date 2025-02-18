@@ -388,7 +388,7 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "INSTER INTO dbo.inmateData " +
+		String^ sqlQuery = "INSERT INTO dbo.inmateData " +
 			"(firstname, age, caseDetails, sentenceLength, cellNumber, behaviorRecords) VALUES " +
 			"(@firstname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
 
