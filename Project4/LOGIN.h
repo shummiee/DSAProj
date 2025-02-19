@@ -220,14 +220,8 @@ namespace Project4 {
 private: System::Void LOGIN_Load(System::Object^ sender, System::EventArgs^ e) {
 	lblName->Parent = pictureBox1;
 	lblName->BackColor = System::Drawing::Color::Transparent;
-	lblId->Parent = pictureBox1;
-	lblId->BackColor = System::Drawing::Color::Transparent;
-	lblEmail->Parent = pictureBox1;
-	lblEmail->BackColor = System::Drawing::Color::Transparent;
 	lblPass->Parent = pictureBox1;
 	lblPass->BackColor = System::Drawing::Color::Transparent;
-	lblPhone->Parent = pictureBox1;
-	lblPhone->BackColor = System::Drawing::Color::Transparent;
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
