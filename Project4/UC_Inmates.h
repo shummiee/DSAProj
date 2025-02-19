@@ -364,7 +364,7 @@ private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^
 	lblBehavior->Parent = pictureBox1;
 	lblBehavior->BackColor = System::Drawing::Color::Transparent;
 }
-	   //commit request
+	   //commit requestt
 public: InmateData^ inmateData = nullptr;
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
