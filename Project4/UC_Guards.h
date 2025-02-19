@@ -97,8 +97,9 @@ namespace Project4 {
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(600, 500);
+			this->pictureBox1->Size = System::Drawing::Size(450, 406);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
@@ -106,68 +107,75 @@ namespace Project4 {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(346, 372);
+			this->textBox5->Location = System::Drawing::Point(260, 302);
+			this->textBox5->Margin = System::Windows::Forms::Padding(2);
 			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(241, 22);
+			this->textBox5->Size = System::Drawing::Size(182, 20);
 			this->textBox5->TabIndex = 37;
 			// 
 			// lblSchedule
 			// 
 			this->lblSchedule->AutoSize = true;
 			this->lblSchedule->BackColor = System::Drawing::Color::Transparent;
-			this->lblSchedule->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblSchedule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblSchedule->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblSchedule->Location = System::Drawing::Point(273, 409);
+			this->lblSchedule->Location = System::Drawing::Point(205, 332);
+			this->lblSchedule->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblSchedule->Name = L"lblSchedule";
-			this->lblSchedule->Size = System::Drawing::Size(111, 17);
+			this->lblSchedule->Size = System::Drawing::Size(86, 13);
 			this->lblSchedule->TabIndex = 34;
 			this->lblSchedule->Text = L"Scheduled Duty:";
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(84, 444);
+			this->textBox3->Location = System::Drawing::Point(63, 361);
+			this->textBox3->Margin = System::Windows::Forms::Padding(2);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(179, 22);
+			this->textBox3->Size = System::Drawing::Size(135, 20);
 			this->textBox3->TabIndex = 32;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(76, 409);
+			this->textBox2->Location = System::Drawing::Point(57, 332);
+			this->textBox2->Margin = System::Windows::Forms::Padding(2);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(187, 22);
+			this->textBox2->Size = System::Drawing::Size(141, 20);
 			this->textBox2->TabIndex = 31;
 			// 
 			// lblBlock
 			// 
 			this->lblBlock->AutoSize = true;
 			this->lblBlock->BackColor = System::Drawing::Color::Transparent;
-			this->lblBlock->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblBlock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblBlock->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblBlock->Location = System::Drawing::Point(273, 375);
+			this->lblBlock->Location = System::Drawing::Point(205, 305);
+			this->lblBlock->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblBlock->Name = L"lblBlock";
-			this->lblBlock->Size = System::Drawing::Size(57, 17);
+			this->lblBlock->Size = System::Drawing::Size(47, 13);
 			this->lblBlock->TabIndex = 30;
 			this->lblBlock->Text = L"Block #:";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(76, 375);
+			this->textBox1->Location = System::Drawing::Point(57, 305);
+			this->textBox1->Margin = System::Windows::Forms::Padding(2);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(187, 22);
+			this->textBox1->Size = System::Drawing::Size(141, 20);
 			this->textBox1->TabIndex = 29;
 			// 
 			// lblGender
 			// 
 			this->lblGender->AutoSize = true;
 			this->lblGender->BackColor = System::Drawing::Color::Transparent;
-			this->lblGender->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblGender->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblGender->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblGender->Location = System::Drawing::Point(13, 445);
+			this->lblGender->Location = System::Drawing::Point(10, 362);
+			this->lblGender->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblGender->Name = L"lblGender";
-			this->lblGender->Size = System::Drawing::Size(58, 17);
+			this->lblGender->Size = System::Drawing::Size(45, 13);
 			this->lblGender->TabIndex = 27;
 			this->lblGender->Text = L"Gender:";
 			// 
@@ -175,12 +183,13 @@ namespace Project4 {
 			// 
 			this->lblAge->AutoSize = true;
 			this->lblAge->BackColor = System::Drawing::Color::Transparent;
-			this->lblAge->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblAge->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblAge->Location = System::Drawing::Point(13, 412);
+			this->lblAge->Location = System::Drawing::Point(10, 335);
+			this->lblAge->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblAge->Name = L"lblAge";
-			this->lblAge->Size = System::Drawing::Size(35, 17);
+			this->lblAge->Size = System::Drawing::Size(29, 13);
 			this->lblAge->TabIndex = 26;
 			this->lblAge->Text = L"Age:";
 			// 
@@ -188,12 +197,13 @@ namespace Project4 {
 			// 
 			this->lblName->AutoSize = true;
 			this->lblName->BackColor = System::Drawing::Color::Transparent;
-			this->lblName->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblName->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblName->Location = System::Drawing::Point(13, 377);
+			this->lblName->Location = System::Drawing::Point(10, 306);
+			this->lblName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblName->Name = L"lblName";
-			this->lblName->Size = System::Drawing::Size(48, 17);
+			this->lblName->Size = System::Drawing::Size(38, 13);
 			this->lblName->TabIndex = 25;
 			this->lblName->Text = L"Name:";
 			// 
@@ -203,16 +213,18 @@ namespace Project4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
 			this->btnDelete->FlatAppearance->BorderSize = 0;
 			this->btnDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDelete->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnDelete->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnDelete->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnDelete->Location = System::Drawing::Point(361, 330);
+			this->btnDelete->Location = System::Drawing::Point(271, 268);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(75, 25);
+			this->btnDelete->Size = System::Drawing::Size(56, 20);
 			this->btnDelete->TabIndex = 24;
 			this->btnDelete->Text = L"DELETE";
 			this->btnDelete->UseVisualStyleBackColor = false;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &UC_Guards::btnDelete_Click);
 			// 
 			// btnUpdate
 			// 
@@ -220,16 +232,18 @@ namespace Project4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
 			this->btnUpdate->FlatAppearance->BorderSize = 0;
 			this->btnUpdate->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnUpdate->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnUpdate->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnUpdate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnUpdate->Location = System::Drawing::Point(248, 330);
+			this->btnUpdate->Location = System::Drawing::Point(186, 268);
+			this->btnUpdate->Margin = System::Windows::Forms::Padding(2);
 			this->btnUpdate->Name = L"btnUpdate";
-			this->btnUpdate->Size = System::Drawing::Size(75, 25);
+			this->btnUpdate->Size = System::Drawing::Size(56, 20);
 			this->btnUpdate->TabIndex = 23;
 			this->btnUpdate->Text = L"UPDATE";
 			this->btnUpdate->UseVisualStyleBackColor = false;
+			this->btnUpdate->Click += gcnew System::EventHandler(this, &UC_Guards::btnUpdate_Click);
 			// 
 			// btnAdd
 			// 
@@ -237,37 +251,41 @@ namespace Project4 {
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
 			this->btnAdd->FlatAppearance->BorderSize = 0;
 			this->btnAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnAdd->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnAdd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnAdd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnAdd->Location = System::Drawing::Point(140, 330);
+			this->btnAdd->Location = System::Drawing::Point(105, 268);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(75, 25);
+			this->btnAdd->Size = System::Drawing::Size(56, 20);
 			this->btnAdd->TabIndex = 22;
 			this->btnAdd->Text = L"ADD";
 			this->btnAdd->UseVisualStyleBackColor = false;
+			this->btnAdd->Click += gcnew System::EventHandler(this, &UC_Guards::btnAdd_Click);
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(16, 28);
+			this->dataGridView1->Location = System::Drawing::Point(12, 23);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(571, 294);
+			this->dataGridView1->Size = System::Drawing::Size(428, 239);
 			this->dataGridView1->TabIndex = 21;
 			// 
 			// dateTimePicker1
 			// 
-			this->dateTimePicker1->Location = System::Drawing::Point(397, 408);
+			this->dateTimePicker1->Location = System::Drawing::Point(298, 332);
+			this->dateTimePicker1->Margin = System::Windows::Forms::Padding(2);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(190, 22);
+			this->dateTimePicker1->Size = System::Drawing::Size(144, 20);
 			this->dateTimePicker1->TabIndex = 38;
 			// 
 			// UC_Guards
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->textBox5);
@@ -284,8 +302,9 @@ namespace Project4 {
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->pictureBox1);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"UC_Guards";
-			this->Size = System::Drawing::Size(600, 500);
+			this->Size = System::Drawing::Size(450, 406);
 			this->Load += gcnew System::EventHandler(this, &UC_Guards::UC_Guards_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -308,5 +327,15 @@ private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ 
 	lblSchedule->Parent = pictureBox1;
 	lblSchedule->BackColor = System::Drawing::Color::Transparent;
 }
+private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+
 };
 }
