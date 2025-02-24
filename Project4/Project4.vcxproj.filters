@@ -80,5 +80,8 @@
     <ClInclude Include="InmateData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VisitorData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

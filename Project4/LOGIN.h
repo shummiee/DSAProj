@@ -258,7 +258,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 			user->Address = reader->GetString(5);
 			//Edited
 
-			this->Close();
+			this->Hide();
 
 			menuadmin.ShowDialog();
 		}

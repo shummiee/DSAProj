@@ -10,5 +10,5 @@ public:
 	String^ CaseDetails;
 	String^ SentenceLength;
 	String^ CellNumber;
-	String^ BehaviourRecord;
+	DateTime^ BehaviourRecord;
 };

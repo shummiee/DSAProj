@@ -1,5 +1,6 @@
 #pragma once
 #include "LOGIN.h"
+#include "VisitorForm.h"
 
 namespace Project4 {
 
@@ -104,6 +105,7 @@ namespace Project4 {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"VISITOR";
 			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm1::button2_Click);
 			// 
 			// MyForm1
 			// 
@@ -124,8 +126,13 @@ namespace Project4 {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		Project4::LOGIN login;
+		this->Hide();
 		login.ShowDialog();
-		this->Close();
+	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Project4::VisitorForm visitor;
+		visitor.ShowDialog();
+		this->Hide();
 	}
 };
 }

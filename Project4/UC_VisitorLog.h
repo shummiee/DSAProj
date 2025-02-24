@@ -36,8 +36,12 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Button^ btnSearch;
+
 	protected:
-	private: System::Windows::Forms::Label^ label1;
+
 
 	private:
 		/// <summary>
@@ -54,8 +58,11 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UC_VisitorLog::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->btnSearch = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -68,28 +75,54 @@ namespace Project4 {
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
 			// 
-			// label1
+			// dataGridView1
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(295, 238);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(42, 16);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"visitor";
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(26, 101);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersWidth = 51;
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(545, 353);
+			this->dataGridView1->TabIndex = 3;
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(354, 53);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(163, 22);
+			this->textBox1->TabIndex = 4;
+			// 
+			// btnSearch
+			// 
+			this->btnSearch->BackColor = System::Drawing::Color::Transparent;
+			this->btnSearch->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSearch.Image")));
+			this->btnSearch->Location = System::Drawing::Point(523, 44);
+			this->btnSearch->Name = L"btnSearch";
+			this->btnSearch->Size = System::Drawing::Size(40, 40);
+			this->btnSearch->TabIndex = 5;
+			this->btnSearch->UseVisualStyleBackColor = false;
 			// 
 			// UC_VisitorLog
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->btnSearch);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"UC_VisitorLog";
 			this->Size = System::Drawing::Size(600, 500);
+			this->Load += gcnew System::EventHandler(this, &UC_VisitorLog::UC_VisitorLog_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+	private: System::Void UC_VisitorLog_Load(System::Object^ sender, System::EventArgs^ e) {
+		btnSearch->Parent = pictureBox1;
+		btnSearch->BackColor = System::Drawing::Color::Transparent;
+	}
+};
 }
