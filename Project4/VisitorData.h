@@ -7,5 +7,5 @@ public:
 	String^ FullName;
 	String^ Gender;
 	String^ Relationship;
-	String^ DateAndTime;
+	DateTime^ DateAndTime;
 };

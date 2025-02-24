@@ -52,9 +52,10 @@ namespace Project4 {
 
 	private: System::Windows::Forms::ComboBox^ cbGender;
 	private: System::Windows::Forms::DateTimePicker^ dtDateTime;
+	private: System::Windows::Forms::Button^ btnSubmit;
 
 
-	private: System::Windows::Forms::Button^ button1;
+
 
 
 	protected:
@@ -83,7 +84,7 @@ namespace Project4 {
 			this->txtRelationship = (gcnew System::Windows::Forms::TextBox());
 			this->cbGender = (gcnew System::Windows::Forms::ComboBox());
 			this->dtDateTime = (gcnew System::Windows::Forms::DateTimePicker());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnSubmit = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -193,29 +194,29 @@ namespace Project4 {
 			this->dtDateTime->Size = System::Drawing::Size(254, 22);
 			this->dtDateTime->TabIndex = 10;
 			// 
-			// button1
+			// btnSubmit
 			// 
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
+			this->btnSubmit->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
 				static_cast<System::Int32>(static_cast<System::Byte>(76)));
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnSubmit->FlatAppearance->BorderSize = 0;
+			this->btnSubmit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::Transparent;
-			this->button1->Location = System::Drawing::Point(344, 402);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(112, 30);
-			this->button1->TabIndex = 11;
-			this->button1->Text = L"SUBMIT";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &VisitorForm::button1_Click);
+			this->btnSubmit->ForeColor = System::Drawing::Color::Transparent;
+			this->btnSubmit->Location = System::Drawing::Point(344, 402);
+			this->btnSubmit->Name = L"btnSubmit";
+			this->btnSubmit->Size = System::Drawing::Size(112, 30);
+			this->btnSubmit->TabIndex = 11;
+			this->btnSubmit->Text = L"SUBMIT";
+			this->btnSubmit->UseVisualStyleBackColor = false;
+			this->btnSubmit->Click += gcnew System::EventHandler(this, &VisitorForm::btnSubmit_Click);
 			// 
 			// VisitorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btnSubmit);
 			this->Controls->Add(this->dtDateTime);
 			this->Controls->Add(this->cbGender);
 			this->Controls->Add(this->txtRelationship);
@@ -252,7 +253,7 @@ private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs
 	lblDT->Parent = pictureBox1;
 	lblDT->BackColor = System::Drawing::Color::Transparent;
 }
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
 
 }
 };
