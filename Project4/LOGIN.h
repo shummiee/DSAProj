@@ -238,13 +238,13 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 
 	try {
-		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;"; //Edited
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;"; //Edited
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE name=@name AND password=@password; "; //Edited
+		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password; "; //Edited
 		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@name", username);
+		command.Parameters->AddWithValue("@firstname", username);
 		command.Parameters->AddWithValue("@password", password);
 
 		SqlDataReader^ reader = command.ExecuteReader();

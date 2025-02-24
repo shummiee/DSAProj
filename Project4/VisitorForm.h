@@ -260,9 +260,9 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 	String^ fullName = txtName->Text;
 	String^ gender = cbGender->SelectedItem != nullptr ? cbGender->SelectedItem->ToString() : nullptr;
 	String^ relationship = txtRelationship->Text;
-	String^ formattedDateAndTime = dtDateTime->Text->ToString("yyyy-MM-dd HH:mm:ss");
+	//String^ formattedDateAndTime = dtDateTime->Text->ToString("yyyy-MM-dd HH:mm:ss");
 
-	if (fullName->Length == 0 || gender == nullptr || relationship->Length == 0 || dateAndTime == DateTime::MinValue) {
+	if (fullName->Length == 0 || gender == nullptr || relationship->Length == 0 /*|| dateAndTime == DateTime::MinValue */ ) {
 		MessageBox::Show("Please enter all fields", "On or more empty fields",
 		MessageBoxButtons::OK);
 		return;
@@ -280,14 +280,14 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 		command.Parameters->AddWithValue("@fullname", fullName);
 		command.Parameters->AddWithValue("@gender", gender);
 		command.Parameters->AddWithValue("@relationship", relationship);
-		command.Parameters->AddWithValue("@dateAndTime", formattedDateAndTime);
+		//command.Parameters->AddWithValue("@dateAndTime", formattedDateAndTime);
 
 		command.ExecuteNonQuery();
 		visitorData = gcnew VisitorData;
 		visitorData->FullName = fullName;
 		visitorData->Gender = gender;
 		visitorData->Relationship = relationship;
-		visitorData->DateAndTime = dateAndTime;
+		//visitorData->DateAndTime = dateAndTime;
 	}
 	catch (Exception^ ex){
 		MessageBox::Show("Failed to Log", "Log Failure", MessageBoxButtons::OK);

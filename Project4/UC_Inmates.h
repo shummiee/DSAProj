@@ -384,11 +384,11 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;";
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "INSERT INTO dbo.inmates " +
+		String^ sqlQuery = "INSERT INTO dbo.inmateData " +
 			"(fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords) VALUES " +
 			"(@fullname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
 
@@ -408,6 +408,9 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		inmateData->SentenceLength = sentenceLength;
 		inmateData->CellNumber = cellNumber;
 		inmateData->BehaviourRecord = behaviourRecord;
+
+		MessageBox::Show("Success", "Inmate added successfully",
+			MessageBoxButtons::OK);
 
 	}
 	catch (Exception^ ex) {
