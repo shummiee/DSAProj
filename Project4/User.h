@@ -5,8 +5,7 @@ using namespace System;
 public ref class User {
 public:
 	int Id;
-	String^ FirstName;
-	String^ LastName;
+	String^ Name;
 	String^ Username;
 	String^ Password;
 	String^ Phone;

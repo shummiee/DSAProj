@@ -238,25 +238,24 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;"; //Edited
+		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;"; //Edited
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password; "; //Edited
+		String^ sqlQuery = "SELECT * FROM dbo.users WHERE name=@name AND password=@password; "; //Edited
 		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", username);
+		command.Parameters->AddWithValue("@name", username);
 		command.Parameters->AddWithValue("@password", password);
 
 		SqlDataReader^ reader = command.ExecuteReader();
 		if (reader->Read()) {
 			user = gcnew User;
 			user->Id = reader->GetInt32(0);
-			user->FirstName = reader->GetString(1);
-			user->LastName = reader->GetString(2);
-			user->Username = reader->GetString(3);
-			user->Password = reader->GetString(4);
-			user->Phone = reader->GetString(5);
-			user->Address = reader->GetString(6);
+			user->Name = reader->GetString(1);
+			user->Username = reader->GetString(2);
+			user->Password = reader->GetString(3);
+			user->Phone = reader->GetString(4);
+			user->Address = reader->GetString(5);
 			//Edited
 
 			this->Close();

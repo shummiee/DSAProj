@@ -5,8 +5,7 @@ using namespace System;
 public ref class InmateData {
 public:
 	int Id;
-	String^ FirstName;
-	String^ LastName;
+	String^ FullName;
 	String^ Age;
 	String^ CaseDetails;
 	String^ SentenceLength;

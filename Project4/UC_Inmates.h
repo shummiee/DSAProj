@@ -368,14 +368,14 @@ private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^
 public: InmateData^ inmateData = nullptr;
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ firstName = textBox1->Text;
+	String^ fullName = textBox1->Text;
 	String^ age = textBox2->Text;
 	String^ caseDetails = textBox3->Text;
 	String^ sentenceLength = textBox4->Text;
 	String^ cellNumber = textBox5->Text;
 	String^ behaviourRecord = textBox6->Text;
 
-	if (firstName->Length == 0 || age->Length == 0
+	if (fullName->Length == 0 || age->Length == 0
 		|| caseDetails->Length == 0 || sentenceLength->Length == 0
 		|| cellNumber->Length == 0 || behaviourRecord->Length == 0) {
 		
@@ -384,16 +384,16 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
-		String^ sqlQuery = "INSERT INTO dbo.inmateData " +
-			"(firstname, age, caseDetails, sentenceLength, cellNumber, behaviorRecords) VALUES " +
-			"(@firstname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
+		String^ sqlQuery = "INSERT INTO dbo.inmates " +
+			"(fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords) VALUES " +
+			"(@fullname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
 
 		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", firstName);
+		command.Parameters->AddWithValue("@fullname", fullName);
 		command.Parameters->AddWithValue("@age", age);
 		command.Parameters->AddWithValue("@caseDetails", caseDetails);
 		command.Parameters->AddWithValue("@sentenceLength", sentenceLength);
@@ -402,7 +402,7 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 
 		command.ExecuteNonQuery();
 		inmateData = gcnew InmateData;
-		inmateData->FirstName = firstName;
+		inmateData->FullName = fullName;
 		inmateData->Age = age;
 		inmateData->CaseDetails = caseDetails;
 		inmateData->SentenceLength = sentenceLength;
@@ -410,10 +410,11 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		inmateData->BehaviourRecord = behaviourRecord;
 
 	}
-	catch(Exception^ ex){
+	catch (Exception^ ex) {
 		MessageBox::Show("Failed to add inmate data", "Registration Failure",
 			MessageBoxButtons::OK);
 	}
+	
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 
