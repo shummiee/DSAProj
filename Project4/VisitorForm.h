@@ -1,5 +1,5 @@
 #pragma once
-#include "VisitorForm.h"
+#include "VisitorData.h"
 
 namespace Project4 {
 
@@ -253,8 +253,45 @@ private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs
 	lblDT->Parent = pictureBox1;
 	lblDT->BackColor = System::Drawing::Color::Transparent;
 }
-private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
 
+public: VisitorData^ visitorData = nullptr;
+
+private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = txtName->Text;
+	String^ gender = cbGender->SelectedItem != nullptr ? cbGender->SelectedItem->ToString() : nullptr;
+	String^ relationship = txtRelationship->Text;
+	String^ formattedDateAndTime = dtDateTime->Text->ToString("yyyy-MM-dd HH:mm:ss");
+
+	if (fullName->Length == 0 || gender == nullptr || relationship->Length == 0 || dateAndTime == DateTime::MinValue) {
+		MessageBox::Show("Please enter all fields", "On or more empty fields",
+		MessageBoxButtons::OK);
+		return;
+	}
+	try {
+		String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;User ID=sa;Password=kirkmanuel;";
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
+
+		String^ sqlQuery = "INSERT INTO dbo.visitors " +
+			"(fullname, gender, relationship, dateAndTime) VALUES " +
+			"(@fullname, @gender, @relationship, @dateAndTime);";
+
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@fullname", fullName);
+		command.Parameters->AddWithValue("@gender", gender);
+		command.Parameters->AddWithValue("@relationship", relationship);
+		command.Parameters->AddWithValue("@dateAndTime", formattedDateAndTime);
+
+		command.ExecuteNonQuery();
+		visitorData = gcnew VisitorData;
+		visitorData->FullName = fullName;
+		visitorData->Gender = gender;
+		visitorData->Relationship = relationship;
+		visitorData->DateAndTime = dateAndTime;
+	}
+	catch (Exception^ ex){
+		MessageBox::Show("Failed to Log", "Log Failure", MessageBoxButtons::OK);
+	}
 }
 };
 }
