@@ -50,6 +50,7 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnHome;
 	private: System::Windows::Forms::Panel^ panelUC;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::Button^ btnExit;
 
 
 
@@ -90,6 +91,7 @@ namespace Project4 {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panelUC = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panelUC->SuspendLayout();
@@ -204,6 +206,7 @@ namespace Project4 {
 			// 
 			// panelUC
 			// 
+			this->panelUC->Controls->Add(this->btnExit);
 			this->panelUC->Controls->Add(this->pictureBox2);
 			this->panelUC->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panelUC->Location = System::Drawing::Point(200, 0);
@@ -220,6 +223,20 @@ namespace Project4 {
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 0;
 			this->pictureBox2->TabStop = false;
+			// 
+			// btnExit
+			// 
+			this->btnExit->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->btnExit->FlatAppearance->BorderSize = 0;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->ForeColor = System::Drawing::Color::Navy;
+			this->btnExit->Location = System::Drawing::Point(558, 12);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(30, 23);
+			this->btnExit->TabIndex = 14;
+			this->btnExit->Text = L"X";
+			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &MenuAdmin::btnExit_Click);
 			// 
 			// MenuAdmin
 			// 
@@ -280,6 +297,9 @@ private: System::Void btnVisitor_Click(System::Object^ sender, System::EventArgs
 	uc_visitor->Dock = DockStyle::Fill;
 	panelUC->Controls->Add(uc_visitor);
 	uc_visitor->BringToFront();
+}
+private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
 }
 };
 }

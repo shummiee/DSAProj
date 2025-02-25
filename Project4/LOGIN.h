@@ -2,6 +2,9 @@
 #include "User.h"
 #include "MenuAdmin.h"
 
+
+
+
 namespace Project4 {
 
 	using namespace System;
@@ -177,6 +180,7 @@ namespace Project4 {
 			this->btnCancel->TabIndex = 12;
 			this->btnCancel->Text = L"CANCEL";
 			this->btnCancel->UseVisualStyleBackColor = false;
+			this->btnCancel->Click += gcnew System::EventHandler(this, &LOGIN::btnCancel_Click);
 			// 
 			// btnExit
 			// 
@@ -190,6 +194,7 @@ namespace Project4 {
 			this->btnExit->TabIndex = 13;
 			this->btnExit->Text = L"X";
 			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &LOGIN::btnExit_Click);
 			// 
 			// LOGIN
 			// 
@@ -273,6 +278,12 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	}
 
 
+	
+}
+private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+}
+private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 }
 };

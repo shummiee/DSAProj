@@ -2,6 +2,7 @@
 #include "LOGIN.h"
 #include "VisitorForm.h"
 
+
 namespace Project4 {
 
 	using namespace System;
@@ -40,6 +41,7 @@ namespace Project4 {
 	protected:
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ btnExit;
 
 	private:
 		/// <summary>
@@ -58,6 +60,7 @@ namespace Project4 {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -107,11 +110,26 @@ namespace Project4 {
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm1::button2_Click);
 			// 
+			// btnExit
+			// 
+			this->btnExit->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->btnExit->FlatAppearance->BorderSize = 0;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->ForeColor = System::Drawing::Color::Navy;
+			this->btnExit->Location = System::Drawing::Point(758, 12);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(30, 23);
+			this->btnExit->TabIndex = 14;
+			this->btnExit->Text = L"X";
+			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm1::btnExit_Click);
+			// 
 			// MyForm1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
+			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
@@ -134,5 +152,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		visitor.ShowDialog();
 		this->Hide();
 	}
+private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+}
 };
 }
