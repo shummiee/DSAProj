@@ -58,7 +58,8 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnDelete;
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnAdd;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dataGridViewGuards;
+
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 
 	protected:
@@ -90,14 +91,17 @@ namespace Project4 {
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewGuards = (gcnew System::Windows::Forms::DataGridView());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewGuards))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
+			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
@@ -267,16 +271,16 @@ namespace Project4 {
 			this->btnAdd->UseVisualStyleBackColor = false;
 			this->btnAdd->Click += gcnew System::EventHandler(this, &UC_Guards::btnAdd_Click);
 			// 
-			// dataGridView1
+			// dataGridViewGuards
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(12, 23);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(428, 239);
-			this->dataGridView1->TabIndex = 21;
+			this->dataGridViewGuards->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewGuards->Location = System::Drawing::Point(12, 23);
+			this->dataGridViewGuards->Margin = System::Windows::Forms::Padding(2);
+			this->dataGridViewGuards->Name = L"dataGridViewGuards";
+			this->dataGridViewGuards->RowHeadersWidth = 51;
+			this->dataGridViewGuards->RowTemplate->Height = 24;
+			this->dataGridViewGuards->Size = System::Drawing::Size(428, 239);
+			this->dataGridViewGuards->TabIndex = 21;
 			// 
 			// dateTimePicker1
 			// 
@@ -303,21 +307,26 @@ namespace Project4 {
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dataGridViewGuards);
 			this->Controls->Add(this->pictureBox1);
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"UC_Guards";
 			this->Size = System::Drawing::Size(450, 406);
 			this->Load += gcnew System::EventHandler(this, &UC_Guards::UC_Guards_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewGuards))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+
+public: User^ users = nullptr;
+
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+
+
 private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ e) {
 	lblName->Parent = pictureBox1;
 	lblName->BackColor = System::Drawing::Color::Transparent;
@@ -329,14 +338,24 @@ private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ 
 	lblBlock->BackColor = System::Drawing::Color::Transparent;
 	lblSchedule->Parent = pictureBox1;
 	lblSchedule->BackColor = System::Drawing::Color::Transparent;
-}
 
-public: User^ users = nullptr;
+	String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+	sqlConn->Open();
+
+	SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.users", sqlConn);
+	SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+	DataTable^ dt = gcnew DataTable();
+	da->Fill(dt);
+	dataGridViewGuards->DataSource = dt;
+
+	sqlConn->Close();
+}
 
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = textBox1->Text;
-	String^ block = textBox2->Text;
+	String^ block = textBox5->Text;
 	DateTime schedule = dateTimePicker1->Value;
 
 	if (fullName->Length == 0 || block->Length == 0) {
@@ -345,55 +364,108 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 			MessageBoxButtons::OK);
 		return;
 	}
-	/*
-	String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
-	SqlConnection sqlConn(connString);
-	sqlConn.Open();
+	try {
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
 
-	String ^ sqlQuery = "SELECT COUNT (*) FROM dbo.users WHERE firstname=@firstname";
-	SqlCommand command(sqlQuery, % sqlConn);
-	command.Parameters->AddWithValue("@firstname", fullName);
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
 
-	int count = (int)command.ExecuteScalar();
-	if (count > 0) {*/
-		try {
-			String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@firstname", fullName);
+		command.Parameters->AddWithValue("@block", block);
+		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
 
-			String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+		command.ExecuteNonQuery();
+		users = gcnew User;
+		users->Name = fullName;
+		users->Block = block;
+		users->Schedule = schedule;
 
-			SqlCommand command(sqlQuery, % sqlConn);
-			command.Parameters->AddWithValue("@firstname", fullName);
-			command.Parameters->AddWithValue("@block", fullName);
-			command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+		MessageBox::Show("Successfully added Officer Schedule", "Success",
+			MessageBoxButtons::OK);
 
-			command.ExecuteNonQuery();
-			users = gcnew User;
-			users->Name = fullName;
-			users->Block = block;
-			users->Schedule = schedule;
-
-			MessageBox::Show("Successfully added Officer Schedule", "Success",
-				MessageBoxButtons::OK);
-
-		}
-		catch (Exception^ ex) {
-			MessageBox::Show("Failed to add Officer Schedule", "Error",
-				MessageBoxButtons::OK);
-		}
-	/*}
-	
-	else {
-		Console::WriteLine("Name not found in Database.");
-	}*/
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to add Officer Schedule", "Error",
+			MessageBoxButtons::OK);
+	}
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = textBox1->Text;
+	String^ block = textBox5->Text;
+	DateTime schedule = dateTimePicker1->Value;
 
+	if (fullName->Length == 0 || block->Length == 0) {
+
+		MessageBox::Show("Please enter all fields", "On or more empty fields",
+			MessageBoxButtons::OK);
+		return;
+	}
+	try {
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
+
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@firstname", fullName);
+		command.Parameters->AddWithValue("@block", block);
+		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+
+		command.ExecuteNonQuery();
+		users = gcnew User;
+		users->Name = fullName;
+		users->Block = block;
+		users->Schedule = schedule;
+
+		MessageBox::Show("Successfully added Officer Schedule", "Success",
+			MessageBoxButtons::OK);
+
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to add Officer Schedule", "Error",
+			MessageBoxButtons::OK);
+	}
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = textBox1->Text;
+	String^ block = textBox5->Text;
+	DateTime schedule = dateTimePicker1->Value;
 
+	if (fullName->Length == 0) {
+
+		MessageBox::Show("Please enter all required fields", "Please enter name.",
+			MessageBoxButtons::OK);
+		return;
+	}
+	try {
+		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
+
+		String^ sqlQuery = "UPDATE dbo.users SET block = @block, schedule = @schedule WHERE firstname = @firstname;";
+
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@firstname", fullName = "");
+		command.Parameters->AddWithValue("@block", block = "");
+		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+
+		command.ExecuteNonQuery();
+		users = gcnew User;
+		users->Name = fullName;
+		users->Block = block;
+		users->Schedule = schedule;
+
+		MessageBox::Show("Successfully added Officer Schedule", "Success",
+			MessageBoxButtons::OK);
+
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to add Officer Schedule", "Error",
+			MessageBoxButtons::OK);
+	}
 }
-
 };
 }
