@@ -1,11 +1,14 @@
 #pragma once
 
+#include "User.h"
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+using namespace System::Data::SqlClient;
 
 
 namespace Project4 {
@@ -327,8 +330,63 @@ private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ 
 	lblSchedule->Parent = pictureBox1;
 	lblSchedule->BackColor = System::Drawing::Color::Transparent;
 }
-private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 
+public: User^ users = nullptr;
+
+
+private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = textBox1->Text;
+	String^ block = textBox2->Text;
+	DateTime schedule = dateTimePicker1->Value;
+
+	if (fullName->Length == 0 || block->Length == 0) {
+
+		MessageBox::Show("Please enter all fields", "On or more empty fields",
+			MessageBoxButtons::OK);
+		return;
+	}
+	/*
+	String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+	SqlConnection sqlConn(connString);
+	sqlConn.Open();
+
+	String ^ sqlQuery = "SELECT COUNT (*) FROM dbo.users WHERE firstname=@firstname";
+	SqlCommand command(sqlQuery, % sqlConn);
+	command.Parameters->AddWithValue("@firstname", fullName);
+
+	int count = (int)command.ExecuteScalar();
+	if (count > 0) {*/
+		try {
+			String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+			SqlConnection sqlConn(connString);
+			sqlConn.Open();
+
+			String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+
+			SqlCommand command(sqlQuery, % sqlConn);
+			command.Parameters->AddWithValue("@firstname", fullName);
+			command.Parameters->AddWithValue("@block", fullName);
+			command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+
+			command.ExecuteNonQuery();
+			users = gcnew User;
+			users->Name = fullName;
+			users->Block = block;
+			users->Schedule = schedule;
+
+			MessageBox::Show("Successfully added Officer Schedule", "Success",
+				MessageBoxButtons::OK);
+
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Failed to add Officer Schedule", "Error",
+				MessageBoxButtons::OK);
+		}
+	/*}
+	
+	else {
+		Console::WriteLine("Name not found in Database.");
+	}*/
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 
