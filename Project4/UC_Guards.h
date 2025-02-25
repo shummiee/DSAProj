@@ -48,12 +48,15 @@ namespace Project4 {
 
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Label^ lblBlock;
+	private: System::Windows::Forms::Label^ lblAge;
+
+
 
 	private: System::Windows::Forms::TextBox^ textBox1;
 
 	private: System::Windows::Forms::Label^ lblGender;
-	private: System::Windows::Forms::Label^ lblAge;
+	private: System::Windows::Forms::Label^ lblBlock;
+
 	private: System::Windows::Forms::Label^ lblName;
 	private: System::Windows::Forms::Button^ btnDelete;
 	private: System::Windows::Forms::Button^ btnUpdate;
@@ -83,10 +86,10 @@ namespace Project4 {
 			this->lblSchedule = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->lblBlock = (gcnew System::Windows::Forms::Label());
+			this->lblAge = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->lblGender = (gcnew System::Windows::Forms::Label());
-			this->lblAge = (gcnew System::Windows::Forms::Label());
+			this->lblBlock = (gcnew System::Windows::Forms::Label());
 			this->lblName = (gcnew System::Windows::Forms::Label());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
@@ -114,10 +117,10 @@ namespace Project4 {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(260, 302);
+			this->textBox5->Location = System::Drawing::Point(251, 302);
 			this->textBox5->Margin = System::Windows::Forms::Padding(2);
 			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(182, 20);
+			this->textBox5->Size = System::Drawing::Size(191, 20);
 			this->textBox5->TabIndex = 37;
 			// 
 			// lblSchedule
@@ -127,7 +130,7 @@ namespace Project4 {
 			this->lblSchedule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblSchedule->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblSchedule->Location = System::Drawing::Point(205, 332);
+			this->lblSchedule->Location = System::Drawing::Point(202, 332);
 			this->lblSchedule->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblSchedule->Name = L"lblSchedule";
 			this->lblSchedule->Size = System::Drawing::Size(86, 13);
@@ -144,25 +147,25 @@ namespace Project4 {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(57, 332);
+			this->textBox2->Location = System::Drawing::Point(63, 332);
 			this->textBox2->Margin = System::Windows::Forms::Padding(2);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(141, 20);
+			this->textBox2->Size = System::Drawing::Size(135, 20);
 			this->textBox2->TabIndex = 31;
 			// 
-			// lblBlock
+			// lblAge
 			// 
-			this->lblBlock->AutoSize = true;
-			this->lblBlock->BackColor = System::Drawing::Color::Transparent;
-			this->lblBlock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblAge->AutoSize = true;
+			this->lblAge->BackColor = System::Drawing::Color::Transparent;
+			this->lblAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblBlock->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblBlock->Location = System::Drawing::Point(205, 305);
-			this->lblBlock->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->lblBlock->Name = L"lblBlock";
-			this->lblBlock->Size = System::Drawing::Size(47, 13);
-			this->lblBlock->TabIndex = 30;
-			this->lblBlock->Text = L"Block #:";
+			this->lblAge->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->lblAge->Location = System::Drawing::Point(205, 305);
+			this->lblAge->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblAge->Name = L"lblAge";
+			this->lblAge->Size = System::Drawing::Size(29, 13);
+			this->lblAge->TabIndex = 30;
+			this->lblAge->Text = L"Age:";
 			// 
 			// textBox1
 			// 
@@ -186,19 +189,19 @@ namespace Project4 {
 			this->lblGender->TabIndex = 27;
 			this->lblGender->Text = L"Gender:";
 			// 
-			// lblAge
+			// lblBlock
 			// 
-			this->lblAge->AutoSize = true;
-			this->lblAge->BackColor = System::Drawing::Color::Transparent;
-			this->lblAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblBlock->AutoSize = true;
+			this->lblBlock->BackColor = System::Drawing::Color::Transparent;
+			this->lblBlock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblAge->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblAge->Location = System::Drawing::Point(10, 335);
-			this->lblAge->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->lblAge->Name = L"lblAge";
-			this->lblAge->Size = System::Drawing::Size(29, 13);
-			this->lblAge->TabIndex = 26;
-			this->lblAge->Text = L"Age:";
+			this->lblBlock->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->lblBlock->Location = System::Drawing::Point(10, 335);
+			this->lblBlock->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblBlock->Name = L"lblBlock";
+			this->lblBlock->Size = System::Drawing::Size(44, 13);
+			this->lblBlock->TabIndex = 26;
+			this->lblBlock->Text = L"Block#:";
 			// 
 			// lblName
 			// 
@@ -299,10 +302,10 @@ namespace Project4 {
 			this->Controls->Add(this->lblSchedule);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->lblBlock);
+			this->Controls->Add(this->lblAge);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->lblGender);
-			this->Controls->Add(this->lblAge);
+			this->Controls->Add(this->lblBlock);
 			this->Controls->Add(this->lblName);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
@@ -322,6 +325,7 @@ namespace Project4 {
 #pragma endregion
 
 public: User^ users = nullptr;
+public: String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -339,7 +343,6 @@ private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ 
 	lblSchedule->Parent = pictureBox1;
 	lblSchedule->BackColor = System::Drawing::Color::Transparent;
 
-	String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
 	sqlConn->Open();
 
@@ -365,7 +368,6 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
@@ -403,7 +405,6 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
@@ -441,7 +442,6 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 

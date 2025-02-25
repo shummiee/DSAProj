@@ -38,7 +38,9 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dataGridViewInmates;
+
+
 	private: System::Windows::Forms::Button^ btnAdd;
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnDelete;
@@ -85,7 +87,7 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UC_Inmates::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewInmates = (gcnew System::Windows::Forms::DataGridView());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
@@ -102,30 +104,30 @@ namespace Project4 {
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewInmates))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(450, 406);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
 			// 
-			// dataGridView1
+			// dataGridViewInmates
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(11, 32);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(428, 231);
-			this->dataGridView1->TabIndex = 3;
+			this->dataGridViewInmates->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewInmates->Location = System::Drawing::Point(11, 32);
+			this->dataGridViewInmates->Margin = System::Windows::Forms::Padding(2);
+			this->dataGridViewInmates->Name = L"dataGridViewInmates";
+			this->dataGridViewInmates->RowHeadersWidth = 51;
+			this->dataGridViewInmates->RowTemplate->Height = 24;
+			this->dataGridViewInmates->Size = System::Drawing::Size(428, 231);
+			this->dataGridViewInmates->TabIndex = 3;
 			// 
 			// btnAdd
 			// 
@@ -138,7 +140,7 @@ namespace Project4 {
 			this->btnAdd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
 			this->btnAdd->Location = System::Drawing::Point(104, 275);
-			this->btnAdd->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(2);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(56, 20);
 			this->btnAdd->TabIndex = 4;
@@ -157,7 +159,7 @@ namespace Project4 {
 			this->btnUpdate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
 			this->btnUpdate->Location = System::Drawing::Point(185, 275);
-			this->btnUpdate->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnUpdate->Margin = System::Windows::Forms::Padding(2);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(56, 20);
 			this->btnUpdate->TabIndex = 5;
@@ -176,7 +178,7 @@ namespace Project4 {
 			this->btnDelete->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
 			this->btnDelete->Location = System::Drawing::Point(270, 275);
-			this->btnDelete->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(56, 20);
 			this->btnDelete->TabIndex = 6;
@@ -243,7 +245,7 @@ namespace Project4 {
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(56, 310);
-			this->textBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox1->Margin = System::Windows::Forms::Padding(2);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(141, 20);
 			this->textBox1->TabIndex = 11;
@@ -251,7 +253,7 @@ namespace Project4 {
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(56, 338);
-			this->textBox2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox2->Margin = System::Windows::Forms::Padding(2);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(141, 20);
 			this->textBox2->TabIndex = 13;
@@ -259,7 +261,7 @@ namespace Project4 {
 			// textBox3
 			// 
 			this->textBox3->Location = System::Drawing::Point(77, 366);
-			this->textBox3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox3->Margin = System::Windows::Forms::Padding(2);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(120, 20);
 			this->textBox3->TabIndex = 14;
@@ -267,7 +269,7 @@ namespace Project4 {
 			// textBox4
 			// 
 			this->textBox4->Location = System::Drawing::Point(254, 310);
-			this->textBox4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox4->Margin = System::Windows::Forms::Padding(2);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(187, 20);
 			this->textBox4->TabIndex = 15;
@@ -303,7 +305,7 @@ namespace Project4 {
 			// textBox5
 			// 
 			this->textBox5->Location = System::Drawing::Point(300, 338);
-			this->textBox5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox5->Margin = System::Windows::Forms::Padding(2);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(140, 20);
 			this->textBox5->TabIndex = 19;
@@ -311,7 +313,7 @@ namespace Project4 {
 			// textBox6
 			// 
 			this->textBox6->Location = System::Drawing::Point(306, 364);
-			this->textBox6->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->textBox6->Margin = System::Windows::Forms::Padding(2);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(134, 20);
 			this->textBox6->TabIndex = 20;
@@ -335,20 +337,21 @@ namespace Project4 {
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnUpdate);
 			this->Controls->Add(this->btnAdd);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dataGridViewInmates);
 			this->Controls->Add(this->pictureBox1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"UC_Inmates";
 			this->Size = System::Drawing::Size(450, 406);
 			this->Load += gcnew System::EventHandler(this, &UC_Inmates::UC_Inmates_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewInmates))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	
+public: InmateData^ inmateData = nullptr;
+public: String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 
 private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^ e) {
 	lblName->Parent = pictureBox1;
@@ -363,9 +366,18 @@ private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^
 	lblSentence->BackColor = System::Drawing::Color::Transparent;
 	lblBehavior->Parent = pictureBox1;
 	lblBehavior->BackColor = System::Drawing::Color::Transparent;
-}
 
-public: InmateData^ inmateData = nullptr;
+	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+	sqlConn->Open();
+
+	SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.inmateData", sqlConn);
+	SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+	DataTable^ dt = gcnew DataTable();
+	da->Fill(dt);
+	dataGridViewInmates->DataSource = dt;
+
+	sqlConn->Close();
+}
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = textBox1->Text;
@@ -384,7 +396,6 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
@@ -420,10 +431,90 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 	
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = textBox1->Text;
+	String^ age = textBox2->Text;
+	String^ caseDetails = textBox3->Text;
+	String^ sentenceLength = textBox4->Text;
+	String^ cellNumber = textBox5->Text;
+	String^ behaviourRecord = textBox6->Text;
 
+	if (fullName->Length == 0 || age->Length == 0
+		|| caseDetails->Length == 0 || sentenceLength->Length == 0
+		|| cellNumber->Length == 0 || behaviourRecord->Length == 0) {
+
+		MessageBox::Show("Please enter all fields", "On or more empty fields",
+			MessageBoxButtons::OK);
+		return;
+	}
+	try {
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
+
+		String^ sqlQuery = "UPDATE dbo.inmateData SET " +
+			"age=@age, caseDetails=@caseDetails, sentenceLength=@sentenceLength," + 
+			"cellNumber=@cellNumber, behaviourRecords=@behaviourRecords WHERE fullname=@fullname;"; 
+
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@fullname", fullName);
+		command.Parameters->AddWithValue("@age", age);
+		command.Parameters->AddWithValue("@caseDetails", caseDetails);
+		command.Parameters->AddWithValue("@sentenceLength", sentenceLength);
+		command.Parameters->AddWithValue("@cellNumber", cellNumber);
+		command.Parameters->AddWithValue("@behaviourRecords", behaviourRecord);
+
+		command.ExecuteNonQuery();
+		inmateData = gcnew InmateData;
+		inmateData->FullName = fullName;
+		inmateData->Age = age;
+		inmateData->CaseDetails = caseDetails;
+		inmateData->SentenceLength = sentenceLength;
+		inmateData->CellNumber = cellNumber;
+		inmateData->BehaviourRecord = behaviourRecord;
+
+		MessageBox::Show("Success", "Inmate information updated successfully",
+			MessageBoxButtons::OK);
+
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to update inmate data", "Update Failure",
+			MessageBoxButtons::OK);
+	}
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullName = textBox1->Text;
+	String^ age = textBox2->Text;
+	String^ caseDetails = textBox3->Text;
+	String^ sentenceLength = textBox4->Text;
+	String^ cellNumber = textBox5->Text;
+	String^ behaviourRecord = textBox6->Text;
 
+	if (fullName->Length == 0) {
+
+		MessageBox::Show("Please enter name", "ERROR",
+			MessageBoxButtons::OK);
+		return;
+	}
+	try {
+		SqlConnection sqlConn(connString);
+		sqlConn.Open();
+
+		String^ sqlQuery = "DELETE dbo.inmateData WHERE fullname=@fullname";
+
+		SqlCommand command(sqlQuery, % sqlConn);
+		command.Parameters->AddWithValue("@fullname", fullName);
+
+		command.ExecuteNonQuery();
+		inmateData = gcnew InmateData;
+		inmateData->FullName = fullName;
+
+		MessageBox::Show("Success", "Inmate information deleted successfully",
+			MessageBoxButtons::OK);
+
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to delete inmate data", "Deletion Failure",
+			MessageBoxButtons::OK);
+	}
 }
 };
 }
