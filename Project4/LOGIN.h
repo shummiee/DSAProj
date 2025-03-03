@@ -246,10 +246,10 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
 	try {
 		Database^ db = gcnew Database();
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE name=@name AND password=@password;";
+		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password;";
 
 		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@name", username),
+			gcnew SqlParameter("@firstname", username),
 			gcnew SqlParameter("@password", password)
 		};
 

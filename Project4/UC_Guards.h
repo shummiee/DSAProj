@@ -1,6 +1,7 @@
 #pragma once
 
 #include "User.h"
+#include "Database.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -368,7 +369,23 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		return;
 	}
 	try {
-		SqlConnection sqlConn(connString);
+		Database^ db = gcnew Database();
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@firstname", fullName),
+			gcnew SqlParameter("@block", block),
+			gcnew SqlParameter("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"))
+		};
+
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+		users = gcnew User;
+		users->Name = fullName;
+		users->Block = block;
+		users->Schedule = schedule;
+	
+		/*SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
 		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
@@ -385,7 +402,7 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		users->Schedule = schedule;
 
 		MessageBox::Show("Successfully added Officer Schedule", "Success",
-			MessageBoxButtons::OK);
+			MessageBoxButtons::OK);*/
 
 	}
 	catch (Exception^ ex) {
