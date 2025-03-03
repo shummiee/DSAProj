@@ -4,6 +4,8 @@
 #include "UC_Inmates.h"
 #include "UC_Reports.h"
 #include "UC_VisitorLog.h"
+#include "Database.h"
+
 
 namespace Project4 {
 
@@ -261,7 +263,7 @@ namespace Project4 {
 #pragma endregion
 	
 
-		
+				
 private: System::Void btnHome_Click(System::Object^ sender, System::EventArgs^ e) {
 		Project4::UC_Home^ uc_home = gcnew Project4::UC_Home();
 		panelUC->Controls->Clear();

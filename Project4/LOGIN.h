@@ -1,6 +1,8 @@
 #pragma once
 #include "User.h"
 #include "MenuAdmin.h"
+#include "Database.h"
+
 
 
 
@@ -238,43 +240,42 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 	String^ password = this->txtPassword->Text;
 
 	if (username->Length == 0 || password->Length == 0) {
-		MessageBox::Show("Please enter your name and password.", "Name/Password is empty", MessageBoxButtons::OK);
+		MessageBox::Show("Please enter your name and password.", "Name/Password is empty", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		return;
 	}
 
 	try {
-		String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;"; //Edited
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
+		Database^ db = gcnew Database();
+		String^ sqlQuery = "SELECT * FROM dbo.users WHERE name=@name AND password=@password;";
 
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password; "; //Edited
-		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", username);
-		command.Parameters->AddWithValue("@password", password);
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@name", username),
+			gcnew SqlParameter("@password", password)
+		};
 
-		SqlDataReader^ reader = command.ExecuteReader();
-		if (reader->Read()) {
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+		if (reader != nullptr && reader->Read()) {
 			user = gcnew User;
 			user->Id = reader->GetInt32(0);
 			user->Name = reader->GetString(1);
-			user->Username = reader->GetString(2);
-			user->Password = reader->GetString(3);
-			user->Phone = reader->GetString(4);
-			user->Address = reader->GetString(5);
-			//Edited
+			user->Password = reader->GetString(2);
+		
+			
 
 			this->Hide();
-
 			menuadmin.ShowDialog();
 		}
 		else {
-			MessageBox::Show("Name or password is incorrect", "Email or Password Error", MessageBoxButtons::OK);
+			MessageBox::Show("Name or password is incorrect", "Login Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
+		if (reader != nullptr) {
+			reader->Close();
+		}
 	}
-
-	catch (Exception^ e) {
-		MessageBox::Show("Failed to connect to database", "Database Connection Error", MessageBoxButtons::OK);
+	catch (Exception^ ex) {
+		MessageBox::Show("Failed to connect to database: " + ex->Message, "Database Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 
 

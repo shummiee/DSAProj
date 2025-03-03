@@ -10,8 +10,8 @@ public:
 	String^ Password;
 	String^ Phone;
 	String^ Address;
+	String^ Role;
 	String^ Block;
 	DateTime^ Schedule;
 };
 
-//Kae: Edited the ref class to fit my sql

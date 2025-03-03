@@ -135,6 +135,7 @@
     <ClCompile Include="VisitorForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Database.h" />
     <ClInclude Include="InmateData.h" />
     <ClInclude Include="LOGIN.h">
       <FileType>CppForm</FileType>
