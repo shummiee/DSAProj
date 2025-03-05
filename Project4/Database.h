@@ -12,7 +12,7 @@ private:
 
 public:
     Database() {
-        String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+        String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
         conn = gcnew SqlConnection(connString);
     }
 

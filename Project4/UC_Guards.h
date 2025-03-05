@@ -40,15 +40,18 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::TextBox^ txtBxAge;
 
-	private: System::Windows::Forms::TextBox^ textBox5;
+
+
 	private: System::Windows::Forms::Label^ lblSchedule;
 
 
 
 
 	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ txtBxBlock;
+
 	private: System::Windows::Forms::Label^ lblAge;
 
 
@@ -83,10 +86,10 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UC_Guards::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->txtBxAge = (gcnew System::Windows::Forms::TextBox());
 			this->lblSchedule = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->txtBxBlock = (gcnew System::Windows::Forms::TextBox());
 			this->lblAge = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->lblGender = (gcnew System::Windows::Forms::Label());
@@ -108,21 +111,21 @@ namespace Project4 {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(450, 406);
+			this->pictureBox1->Size = System::Drawing::Size(600, 500);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &UC_Guards::pictureBox1_Click);
 			// 
-			// textBox5
+			// txtBxAge
 			// 
-			this->textBox5->Location = System::Drawing::Point(251, 302);
-			this->textBox5->Margin = System::Windows::Forms::Padding(2);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(191, 20);
-			this->textBox5->TabIndex = 37;
+			this->txtBxAge->Location = System::Drawing::Point(335, 372);
+			this->txtBxAge->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtBxAge->Name = L"txtBxAge";
+			this->txtBxAge->Size = System::Drawing::Size(253, 22);
+			this->txtBxAge->TabIndex = 37;
 			// 
 			// lblSchedule
 			// 
@@ -131,28 +134,27 @@ namespace Project4 {
 			this->lblSchedule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblSchedule->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblSchedule->Location = System::Drawing::Point(202, 332);
-			this->lblSchedule->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblSchedule->Location = System::Drawing::Point(269, 409);
 			this->lblSchedule->Name = L"lblSchedule";
-			this->lblSchedule->Size = System::Drawing::Size(86, 13);
+			this->lblSchedule->Size = System::Drawing::Size(105, 16);
 			this->lblSchedule->TabIndex = 34;
 			this->lblSchedule->Text = L"Scheduled Duty:";
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(63, 361);
-			this->textBox3->Margin = System::Windows::Forms::Padding(2);
+			this->textBox3->Location = System::Drawing::Point(84, 444);
+			this->textBox3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(135, 20);
+			this->textBox3->Size = System::Drawing::Size(179, 22);
 			this->textBox3->TabIndex = 32;
 			// 
-			// textBox2
+			// txtBxBlock
 			// 
-			this->textBox2->Location = System::Drawing::Point(63, 332);
-			this->textBox2->Margin = System::Windows::Forms::Padding(2);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(135, 20);
-			this->textBox2->TabIndex = 31;
+			this->txtBxBlock->Location = System::Drawing::Point(84, 409);
+			this->txtBxBlock->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtBxBlock->Name = L"txtBxBlock";
+			this->txtBxBlock->Size = System::Drawing::Size(179, 22);
+			this->txtBxBlock->TabIndex = 31;
 			// 
 			// lblAge
 			// 
@@ -161,19 +163,18 @@ namespace Project4 {
 			this->lblAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblAge->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblAge->Location = System::Drawing::Point(205, 305);
-			this->lblAge->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblAge->Location = System::Drawing::Point(273, 375);
 			this->lblAge->Name = L"lblAge";
-			this->lblAge->Size = System::Drawing::Size(29, 13);
+			this->lblAge->Size = System::Drawing::Size(35, 16);
 			this->lblAge->TabIndex = 30;
 			this->lblAge->Text = L"Age:";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(57, 305);
-			this->textBox1->Margin = System::Windows::Forms::Padding(2);
+			this->textBox1->Location = System::Drawing::Point(76, 375);
+			this->textBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(141, 20);
+			this->textBox1->Size = System::Drawing::Size(187, 22);
 			this->textBox1->TabIndex = 29;
 			// 
 			// lblGender
@@ -183,10 +184,9 @@ namespace Project4 {
 			this->lblGender->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblGender->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblGender->Location = System::Drawing::Point(10, 362);
-			this->lblGender->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblGender->Location = System::Drawing::Point(13, 446);
 			this->lblGender->Name = L"lblGender";
-			this->lblGender->Size = System::Drawing::Size(45, 13);
+			this->lblGender->Size = System::Drawing::Size(55, 16);
 			this->lblGender->TabIndex = 27;
 			this->lblGender->Text = L"Gender:";
 			// 
@@ -197,10 +197,9 @@ namespace Project4 {
 			this->lblBlock->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblBlock->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblBlock->Location = System::Drawing::Point(10, 335);
-			this->lblBlock->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblBlock->Location = System::Drawing::Point(13, 412);
 			this->lblBlock->Name = L"lblBlock";
-			this->lblBlock->Size = System::Drawing::Size(44, 13);
+			this->lblBlock->Size = System::Drawing::Size(51, 16);
 			this->lblBlock->TabIndex = 26;
 			this->lblBlock->Text = L"Block#:";
 			// 
@@ -211,10 +210,9 @@ namespace Project4 {
 			this->lblName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblName->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblName->Location = System::Drawing::Point(10, 306);
-			this->lblName->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblName->Location = System::Drawing::Point(13, 377);
 			this->lblName->Name = L"lblName";
-			this->lblName->Size = System::Drawing::Size(38, 13);
+			this->lblName->Size = System::Drawing::Size(47, 16);
 			this->lblName->TabIndex = 25;
 			this->lblName->Text = L"Name:";
 			// 
@@ -228,10 +226,10 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnDelete->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnDelete->Location = System::Drawing::Point(271, 268);
-			this->btnDelete->Margin = System::Windows::Forms::Padding(2);
+			this->btnDelete->Location = System::Drawing::Point(361, 330);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(56, 20);
+			this->btnDelete->Size = System::Drawing::Size(75, 25);
 			this->btnDelete->TabIndex = 24;
 			this->btnDelete->Text = L"DELETE";
 			this->btnDelete->UseVisualStyleBackColor = false;
@@ -247,10 +245,10 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnUpdate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnUpdate->Location = System::Drawing::Point(186, 268);
-			this->btnUpdate->Margin = System::Windows::Forms::Padding(2);
+			this->btnUpdate->Location = System::Drawing::Point(248, 330);
+			this->btnUpdate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdate->Name = L"btnUpdate";
-			this->btnUpdate->Size = System::Drawing::Size(56, 20);
+			this->btnUpdate->Size = System::Drawing::Size(75, 25);
 			this->btnUpdate->TabIndex = 23;
 			this->btnUpdate->Text = L"UPDATE";
 			this->btnUpdate->UseVisualStyleBackColor = false;
@@ -266,10 +264,10 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnAdd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnAdd->Location = System::Drawing::Point(105, 268);
-			this->btnAdd->Margin = System::Windows::Forms::Padding(2);
+			this->btnAdd->Location = System::Drawing::Point(140, 330);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(56, 20);
+			this->btnAdd->Size = System::Drawing::Size(75, 25);
 			this->btnAdd->TabIndex = 22;
 			this->btnAdd->Text = L"ADD";
 			this->btnAdd->UseVisualStyleBackColor = false;
@@ -278,31 +276,31 @@ namespace Project4 {
 			// dataGridViewGuards
 			// 
 			this->dataGridViewGuards->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridViewGuards->Location = System::Drawing::Point(12, 23);
-			this->dataGridViewGuards->Margin = System::Windows::Forms::Padding(2);
+			this->dataGridViewGuards->Location = System::Drawing::Point(16, 28);
+			this->dataGridViewGuards->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dataGridViewGuards->Name = L"dataGridViewGuards";
 			this->dataGridViewGuards->RowHeadersWidth = 51;
 			this->dataGridViewGuards->RowTemplate->Height = 24;
-			this->dataGridViewGuards->Size = System::Drawing::Size(428, 239);
+			this->dataGridViewGuards->Size = System::Drawing::Size(571, 294);
 			this->dataGridViewGuards->TabIndex = 21;
 			// 
 			// dateTimePicker1
 			// 
-			this->dateTimePicker1->Location = System::Drawing::Point(298, 332);
-			this->dateTimePicker1->Margin = System::Windows::Forms::Padding(2);
+			this->dateTimePicker1->Location = System::Drawing::Point(397, 409);
+			this->dateTimePicker1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(144, 20);
+			this->dateTimePicker1->Size = System::Drawing::Size(191, 22);
 			this->dateTimePicker1->TabIndex = 38;
 			// 
 			// UC_Guards
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->dateTimePicker1);
-			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->txtBxAge);
 			this->Controls->Add(this->lblSchedule);
 			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->txtBxBlock);
 			this->Controls->Add(this->lblAge);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->lblGender);
@@ -313,9 +311,9 @@ namespace Project4 {
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->dataGridViewGuards);
 			this->Controls->Add(this->pictureBox1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"UC_Guards";
-			this->Size = System::Drawing::Size(450, 406);
+			this->Size = System::Drawing::Size(600, 500);
 			this->Load += gcnew System::EventHandler(this, &UC_Guards::UC_Guards_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewGuards))->EndInit();
@@ -326,7 +324,7 @@ namespace Project4 {
 #pragma endregion
 
 public: User^ users = nullptr;
-public: String^ connString = "Data Source=DESKTOP-KAEPC\\SQLEXPRESS;Initial Catalog=prisonManagementSystem;Persist Security Info=True;User ID=sa;Password=kevin123;";
+public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
 
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -359,7 +357,7 @@ private: System::Void UC_Guards_Load(System::Object^ sender, System::EventArgs^ 
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = textBox1->Text;
-	String^ block = textBox5->Text;
+	String^ block = txtBxBlock->Text;
 	DateTime schedule = dateTimePicker1->Value;
 
 	if (fullName->Length == 0 || block->Length == 0) {
@@ -370,10 +368,10 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 	try {
 		Database^ db = gcnew Database();
-		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE name=@name;";
 
 		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@firstname", fullName),
+			gcnew SqlParameter("@name", fullName),
 			gcnew SqlParameter("@block", block),
 			gcnew SqlParameter("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"))
 		};
@@ -384,6 +382,9 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		users->Name = fullName;
 		users->Block = block;
 		users->Schedule = schedule;
+
+		MessageBox::Show("Successfully Added Officer's Schedule", "Success", 
+			MessageBoxButtons::OK);
 	
 		/*SqlConnection sqlConn(connString);
 		sqlConn.Open();
@@ -412,7 +413,7 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = textBox1->Text;
-	String^ block = textBox5->Text;
+	String^ block = txtBxBlock->Text;
 	DateTime schedule = dateTimePicker1->Value;
 
 	if (fullName->Length == 0 || block->Length == 0) {
@@ -422,23 +423,23 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		return;
 	}
 	try {
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
+		Database^ db = gcnew Database();
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE name=@name;";
 
-		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@name", fullName),
+			gcnew SqlParameter("@block", block),
+			gcnew SqlParameter("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"))
+		};
 
-		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", fullName);
-		command.Parameters->AddWithValue("@block", block);
-		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
 
-		command.ExecuteNonQuery();
 		users = gcnew User;
 		users->Name = fullName;
 		users->Block = block;
 		users->Schedule = schedule;
 
-		MessageBox::Show("Successfully added Officer Schedule", "Success",
+		MessageBox::Show("Successfully Updated Officer's Schedule", "Success",
 			MessageBoxButtons::OK);
 
 	}
@@ -449,7 +450,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = textBox1->Text;
-	String^ block = textBox5->Text;
+	String^ block = txtBxBlock->Text;
 	DateTime schedule = dateTimePicker1->Value;
 
 	if (fullName->Length == 0) {
@@ -459,23 +460,23 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 		return;
 	}
 	try {
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
+		Database^ db = gcnew Database();
+		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE name=@name;";
 
-		String^ sqlQuery = "UPDATE dbo.users SET block = @block, schedule = @schedule WHERE firstname = @firstname;";
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@name", fullName),
+			gcnew SqlParameter("@block", block),
+			gcnew SqlParameter("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"))
+		};
 
-		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", fullName = "");
-		command.Parameters->AddWithValue("@block", block = "");
-		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
 
-		command.ExecuteNonQuery();
 		users = gcnew User;
 		users->Name = fullName;
 		users->Block = block;
 		users->Schedule = schedule;
 
-		MessageBox::Show("Successfully added Officer Schedule", "Success",
+		MessageBox::Show("Successfully Added Officer's Schedule", "Success",
 			MessageBoxButtons::OK);
 
 	}

@@ -5,7 +5,7 @@
 #include "UC_Reports.h"
 #include "UC_VisitorLog.h"
 #include "Database.h"
-
+#include "User.h"
 
 namespace Project4 {
 
@@ -19,13 +19,15 @@ namespace Project4 {
 	/// <summary>
 	/// Summary for MenuAdmin
 	/// </summary>
-	public ref class MenuAdmin : public System::Windows::Forms::Form
-	{
+	public ref class MenuAdmin : public System::Windows::Forms::Form {
+	private:
+		User^ user; // Declare user object
 	public:
-		MenuAdmin(void)
-		{
+		MenuAdmin(User^ loggedInUser) {
 			InitializeComponent();
-		}
+			this->user = loggedInUser; // Store logged-in user
+		};
+	
 
 	protected:
 		/// <summary>
@@ -53,6 +55,22 @@ namespace Project4 {
 	private: System::Windows::Forms::Panel^ panelUC;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Button^ btnExit;
+
+	private: System::Void MenuAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
+		if (!user->Permissions->Contains("Can Add/Edit Inmates")) {
+			btnInmates->Enabled = false;
+		}
+		if (!user->Permissions->Contains("Can Manage Guards")) {
+			btnGuards->Enabled = false;
+		}
+		if (!user->Permissions->Contains("Can View Reports")) {
+			btnReport->Enabled = false;
+		}
+		if (!user->Permissions->Contains("Can View Logs")) {
+			btnVisitor->Enabled = false;
+		};
+	}
+
 
 
 
@@ -280,11 +298,16 @@ private: System::Void btnInmates_Click(System::Object^ sender, System::EventArgs
 		uc_inmates->BringToFront();
 }
 private: System::Void btnGuards_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (user->Role == "Warden") { // Only Warden can access
 		Project4::UC_Guards^ uc_guards = gcnew Project4::UC_Guards();
 		panelUC->Controls->Clear();
 		uc_guards->Dock = DockStyle::Fill;
 		panelUC->Controls->Add(uc_guards);
 		uc_guards->BringToFront();
+	}
+	else {
+		MessageBox::Show("Access Denied: Only Wardens can access this section.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 private: System::Void btnReport_Click(System::Object^ sender, System::EventArgs^ e) {
 	Project4::UC_Reports^ uc_report = gcnew Project4::UC_Reports();

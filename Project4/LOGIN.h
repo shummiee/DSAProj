@@ -70,6 +70,7 @@ namespace Project4 {
 
 
 
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -235,39 +236,47 @@ private: System::Void textBox1_TextChanged(System::Object^ sender, System::Event
 public: User^ user = nullptr;
 
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-	Project4::MenuAdmin menuadmin;
 	String^ username = this->txtName->Text;
 	String^ password = this->txtPassword->Text;
 
+	// Check if username or password is empty
 	if (username->Length == 0 || password->Length == 0) {
-		MessageBox::Show("Please enter your name and password.", "Name/Password is empty", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		MessageBox::Show("Please enter your username and password.", "Login Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		return;
 	}
 
 	try {
+		// Create database connection
 		Database^ db = gcnew Database();
-		String^ sqlQuery = "SELECT * FROM dbo.users WHERE firstname=@firstname AND password=@password;";
+
+		// Correct SQL Query to retrieve only role-based access
+		String^ sqlQuery = "SELECT id, name, role FROM dbo.users WHERE name = @name AND password = @password;";
 
 		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@firstname", username),
+			gcnew SqlParameter("@name", username),
 			gcnew SqlParameter("@password", password)
 		};
 
 		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
 
 		if (reader != nullptr && reader->Read()) {
-			user = gcnew User;
-			user->Id = reader->GetInt32(0);
-			user->Name = reader->GetString(1);
-			user->Password = reader->GetString(2);
-		
-			
+			int userId = reader->GetInt32(0);
+			String^ name = reader->GetString(1);
+			String^ role = reader->GetString(2); // Fetch user role
 
+			// Store user data in an object
+			user = gcnew User;
+			user->Id = userId;
+			user->Name = name;
+			user->Role = role;  // Store only role (no need for permission list)
+
+			// Redirect to the main menu (MenuAdmin) based on role
 			this->Hide();
-			menuadmin.ShowDialog();
+			Project4::MenuAdmin^ menuadmin = gcnew Project4::MenuAdmin(user);
+			menuadmin->ShowDialog();
 		}
 		else {
-			MessageBox::Show("Name or password is incorrect", "Login Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show("Incorrect username or password.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 		if (reader != nullptr) {
@@ -275,10 +284,8 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 		}
 	}
 	catch (Exception^ ex) {
-		MessageBox::Show("Failed to connect to database: " + ex->Message, "Database Connection Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		MessageBox::Show("Database connection failed: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
-
-
 	
 }
 private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
