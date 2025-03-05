@@ -37,7 +37,8 @@ namespace Project4 {
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ txtSearch;
+
 	private: System::Windows::Forms::Button^ btnSearch;
 
 	protected:
@@ -59,7 +60,7 @@ namespace Project4 {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UC_VisitorLog::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtSearch = (gcnew System::Windows::Forms::TextBox());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -74,6 +75,7 @@ namespace Project4 {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &UC_VisitorLog::pictureBox1_Click);
 			// 
 			// dataGridView1
 			// 
@@ -85,12 +87,12 @@ namespace Project4 {
 			this->dataGridView1->Size = System::Drawing::Size(545, 353);
 			this->dataGridView1->TabIndex = 3;
 			// 
-			// textBox1
+			// txtSearch
 			// 
-			this->textBox1->Location = System::Drawing::Point(354, 53);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(163, 22);
-			this->textBox1->TabIndex = 4;
+			this->txtSearch->Location = System::Drawing::Point(354, 53);
+			this->txtSearch->Name = L"txtSearch";
+			this->txtSearch->Size = System::Drawing::Size(163, 22);
+			this->txtSearch->TabIndex = 4;
 			// 
 			// btnSearch
 			// 
@@ -107,7 +109,7 @@ namespace Project4 {
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->btnSearch);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtSearch);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"UC_VisitorLog";
@@ -124,5 +126,7 @@ namespace Project4 {
 		btnSearch->Parent = pictureBox1;
 		btnSearch->BackColor = System::Drawing::Color::Transparent;
 	}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

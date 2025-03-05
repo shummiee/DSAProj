@@ -67,6 +67,12 @@ namespace Project4 {
 	private: System::Windows::Forms::Label^ lblBehavior;
 	private: System::Windows::Forms::TextBox^ txtBxInmateSentence;
 	private: System::Windows::Forms::TextBox^ txtBxInmateBehaviour;
+	private: System::Windows::Forms::Button^ btnSearch;
+	private: System::Windows::Forms::TextBox^ txtBxSearch;
+
+
+
+
 
 
 
@@ -110,6 +116,8 @@ namespace Project4 {
 			this->lblBehavior = (gcnew System::Windows::Forms::Label());
 			this->txtBxInmateSentence = (gcnew System::Windows::Forms::TextBox());
 			this->txtBxInmateBehaviour = (gcnew System::Windows::Forms::TextBox());
+			this->btnSearch = (gcnew System::Windows::Forms::Button());
+			this->txtBxSearch = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewInmates))->BeginInit();
 			this->SuspendLayout();
@@ -124,17 +132,20 @@ namespace Project4 {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &UC_Inmates::pictureBox1_Click);
 			// 
 			// dataGridViewInmates
 			// 
 			this->dataGridViewInmates->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridViewInmates->Location = System::Drawing::Point(15, 39);
+			this->dataGridViewInmates->Location = System::Drawing::Point(15, 65);
 			this->dataGridViewInmates->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dataGridViewInmates->Name = L"dataGridViewInmates";
 			this->dataGridViewInmates->RowHeadersWidth = 51;
 			this->dataGridViewInmates->RowTemplate->Height = 24;
 			this->dataGridViewInmates->Size = System::Drawing::Size(571, 284);
 			this->dataGridViewInmates->TabIndex = 3;
+			this->dataGridViewInmates->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UC_Inmates::dataGridViewInmates_CellClick);
+			this->dataGridViewInmates->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &UC_Inmates::dataGridViewInmates_CellContentClick);
 			// 
 			// btnAdd
 			// 
@@ -146,7 +157,7 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnAdd->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnAdd->Location = System::Drawing::Point(139, 338);
+			this->btnAdd->Location = System::Drawing::Point(139, 357);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
 			this->btnAdd->Size = System::Drawing::Size(75, 25);
@@ -165,7 +176,7 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnUpdate->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnUpdate->Location = System::Drawing::Point(247, 338);
+			this->btnUpdate->Location = System::Drawing::Point(247, 357);
 			this->btnUpdate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdate->Name = L"btnUpdate";
 			this->btnUpdate->Size = System::Drawing::Size(75, 25);
@@ -184,7 +195,7 @@ namespace Project4 {
 				static_cast<System::Byte>(0)));
 			this->btnDelete->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->btnDelete->Location = System::Drawing::Point(360, 338);
+			this->btnDelete->Location = System::Drawing::Point(360, 357);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(75, 25);
@@ -200,7 +211,7 @@ namespace Project4 {
 			this->lblName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblName->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblName->Location = System::Drawing::Point(12, 384);
+			this->lblName->Location = System::Drawing::Point(12, 403);
 			this->lblName->Name = L"lblName";
 			this->lblName->Size = System::Drawing::Size(47, 16);
 			this->lblName->TabIndex = 7;
@@ -213,7 +224,7 @@ namespace Project4 {
 			this->lblAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblAge->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblAge->Location = System::Drawing::Point(12, 418);
+			this->lblAge->Location = System::Drawing::Point(12, 437);
 			this->lblAge->Name = L"lblAge";
 			this->lblAge->Size = System::Drawing::Size(35, 16);
 			this->lblAge->TabIndex = 8;
@@ -226,7 +237,7 @@ namespace Project4 {
 			this->lblGender->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblGender->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblGender->Location = System::Drawing::Point(12, 452);
+			this->lblGender->Location = System::Drawing::Point(12, 471);
 			this->lblGender->Name = L"lblGender";
 			this->lblGender->Size = System::Drawing::Size(80, 16);
 			this->lblGender->TabIndex = 9;
@@ -239,7 +250,7 @@ namespace Project4 {
 			this->lblCellNum->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblCellNum->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblCellNum->Location = System::Drawing::Point(275, 383);
+			this->lblCellNum->Location = System::Drawing::Point(275, 402);
 			this->lblCellNum->Name = L"lblCellNum";
 			this->lblCellNum->Size = System::Drawing::Size(43, 16);
 			this->lblCellNum->TabIndex = 10;
@@ -247,7 +258,7 @@ namespace Project4 {
 			// 
 			// txtBxInmateName
 			// 
-			this->txtBxInmateName->Location = System::Drawing::Point(75, 382);
+			this->txtBxInmateName->Location = System::Drawing::Point(75, 401);
 			this->txtBxInmateName->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateName->Name = L"txtBxInmateName";
 			this->txtBxInmateName->Size = System::Drawing::Size(187, 22);
@@ -255,7 +266,7 @@ namespace Project4 {
 			// 
 			// txtBxInmateAge
 			// 
-			this->txtBxInmateAge->Location = System::Drawing::Point(75, 416);
+			this->txtBxInmateAge->Location = System::Drawing::Point(75, 435);
 			this->txtBxInmateAge->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateAge->Name = L"txtBxInmateAge";
 			this->txtBxInmateAge->Size = System::Drawing::Size(187, 22);
@@ -263,7 +274,7 @@ namespace Project4 {
 			// 
 			// txtBxInmateCaseDetails
 			// 
-			this->txtBxInmateCaseDetails->Location = System::Drawing::Point(103, 450);
+			this->txtBxInmateCaseDetails->Location = System::Drawing::Point(103, 469);
 			this->txtBxInmateCaseDetails->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateCaseDetails->Name = L"txtBxInmateCaseDetails";
 			this->txtBxInmateCaseDetails->Size = System::Drawing::Size(159, 22);
@@ -271,7 +282,7 @@ namespace Project4 {
 			// 
 			// txtBxInmateCellNumber
 			// 
-			this->txtBxInmateCellNumber->Location = System::Drawing::Point(339, 382);
+			this->txtBxInmateCellNumber->Location = System::Drawing::Point(339, 401);
 			this->txtBxInmateCellNumber->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateCellNumber->Name = L"txtBxInmateCellNumber";
 			this->txtBxInmateCellNumber->Size = System::Drawing::Size(248, 22);
@@ -284,7 +295,7 @@ namespace Project4 {
 			this->lblSentence->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblSentence->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblSentence->Location = System::Drawing::Point(272, 418);
+			this->lblSentence->Location = System::Drawing::Point(272, 437);
 			this->lblSentence->Name = L"lblSentence";
 			this->lblSentence->Size = System::Drawing::Size(110, 16);
 			this->lblSentence->TabIndex = 16;
@@ -297,7 +308,7 @@ namespace Project4 {
 			this->lblBehavior->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblBehavior->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->lblBehavior->Location = System::Drawing::Point(272, 450);
+			this->lblBehavior->Location = System::Drawing::Point(272, 469);
 			this->lblBehavior->Name = L"lblBehavior";
 			this->lblBehavior->Size = System::Drawing::Size(119, 16);
 			this->lblBehavior->TabIndex = 17;
@@ -305,7 +316,7 @@ namespace Project4 {
 			// 
 			// txtBxInmateSentence
 			// 
-			this->txtBxInmateSentence->Location = System::Drawing::Point(400, 416);
+			this->txtBxInmateSentence->Location = System::Drawing::Point(400, 435);
 			this->txtBxInmateSentence->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateSentence->Name = L"txtBxInmateSentence";
 			this->txtBxInmateSentence->Size = System::Drawing::Size(185, 22);
@@ -313,16 +324,36 @@ namespace Project4 {
 			// 
 			// txtBxInmateBehaviour
 			// 
-			this->txtBxInmateBehaviour->Location = System::Drawing::Point(408, 448);
+			this->txtBxInmateBehaviour->Location = System::Drawing::Point(408, 467);
 			this->txtBxInmateBehaviour->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxInmateBehaviour->Name = L"txtBxInmateBehaviour";
 			this->txtBxInmateBehaviour->Size = System::Drawing::Size(177, 22);
 			this->txtBxInmateBehaviour->TabIndex = 20;
 			// 
+			// btnSearch
+			// 
+			this->btnSearch->BackColor = System::Drawing::Color::Transparent;
+			this->btnSearch->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSearch.Image")));
+			this->btnSearch->Location = System::Drawing::Point(540, 16);
+			this->btnSearch->Name = L"btnSearch";
+			this->btnSearch->Size = System::Drawing::Size(40, 40);
+			this->btnSearch->TabIndex = 22;
+			this->btnSearch->UseVisualStyleBackColor = false;
+			this->btnSearch->Click += gcnew System::EventHandler(this, &UC_Inmates::btnSearch_Click);
+			// 
+			// txtBxSearch
+			// 
+			this->txtBxSearch->Location = System::Drawing::Point(371, 25);
+			this->txtBxSearch->Name = L"txtBxSearch";
+			this->txtBxSearch->Size = System::Drawing::Size(163, 22);
+			this->txtBxSearch->TabIndex = 21;
+			// 
 			// UC_Inmates
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->Controls->Add(this->btnSearch);
+			this->Controls->Add(this->txtBxSearch);
 			this->Controls->Add(this->txtBxInmateBehaviour);
 			this->Controls->Add(this->txtBxInmateSentence);
 			this->Controls->Add(this->lblBehavior);
@@ -367,6 +398,8 @@ private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^
 	lblSentence->BackColor = System::Drawing::Color::Transparent;
 	lblBehavior->Parent = pictureBox1;
 	lblBehavior->BackColor = System::Drawing::Color::Transparent;
+	btnSearch->Parent = pictureBox1;
+	btnSearch->BackColor = System::Drawing::Color::Transparent;
 
 	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
 	sqlConn->Open();
@@ -446,7 +479,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Please enter all fields", "On or more empty fields",
 			MessageBoxButtons::OK);
 		return;
-	}
+	}	
 	try {
 		Database^ db = gcnew Database();
 		String^ sqlQuery = "UPDATE dbo.inmates SET " +
@@ -543,6 +576,64 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Failed to delete inmate data", "Deletion Failure",
 			MessageBoxButtons::OK);
 	}
+}
+private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ searchName = txtBxSearch->Text; 
+
+	if (searchName->Length == 0) {
+		MessageBox::Show("Please enter a name to search.", "Empty Search Field", MessageBoxButtons::OK);
+		return;
+	}
+
+	try {
+		Database^ db = gcnew Database();
+		String^ sqlQuery = "SELECT fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords "
+			"FROM dbo.inmates WHERE fullname = @searchName";
+
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@searchName", searchName)
+		};
+
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+		if (reader->Read()) {
+			txtBxInmateName->Text = reader["fullname"]->ToString();
+			txtBxInmateAge->Text = reader["age"]->ToString();
+			txtBxInmateCaseDetails->Text = reader["caseDetails"]->ToString();
+			txtBxInmateSentence->Text = reader["sentenceLength"]->ToString();
+			txtBxInmateCellNumber->Text = reader["cellNumber"]->ToString();
+			txtBxInmateBehaviour->Text = reader["behaviourRecords"]->ToString();
+
+			MessageBox::Show("Inmate found!", "Search Successful", MessageBoxButtons::OK);
+		}
+		else {
+			MessageBox::Show("No inmate found with the given name.", "Search Failed", MessageBoxButtons::OK);
+		}
+
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Error while searching inmate data.", "Search Failure", MessageBoxButtons::OK);
+	}
+}
+
+
+private: System::Void dataGridViewInmates_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void dataGridViewInmates_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) { // Ensure the row index is valid
+		DataGridViewRow^ row = this->dataGridViewInmates->Rows[e->RowIndex];
+
+		// Populate the text boxes with data from the selected row
+		txtBxInmateName->Text = row->Cells["fullname"]->Value->ToString();
+		txtBxInmateAge->Text = row->Cells["age"]->Value->ToString();
+		txtBxInmateCaseDetails->Text = row->Cells["caseDetails"]->Value->ToString();
+		txtBxInmateSentence->Text = row->Cells["sentenceLength"]->Value->ToString();
+		txtBxInmateCellNumber->Text = row->Cells["cellNumber"]->Value->ToString();
+		txtBxInmateBehaviour->Text = row->Cells["behaviourRecords"]->Value->ToString();
+	}
+}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
