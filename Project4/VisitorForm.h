@@ -52,11 +52,14 @@ namespace Project4 {
 
 	private: System::Windows::Forms::ComboBox^ cbGender;
 	private: System::Windows::Forms::DateTimePicker^ dtDateTime;
-	private: System::Windows::Forms::Button^ btnSubmit;
+	private: System::Windows::Forms::Button^ btnQueue;
+
 	private: System::Windows::Forms::Label^ lblTitle;
 	private: System::Windows::Forms::Label^ lblInmate;
 	private: System::Windows::Forms::TextBox^ txtInmate;
 	private: System::Windows::Forms::DataGridView^ dgvVisitor;
+	private: System::Windows::Forms::Button^ btnDequeue;
+
 
 
 
@@ -88,11 +91,12 @@ namespace Project4 {
 			this->txtRelationship = (gcnew System::Windows::Forms::TextBox());
 			this->cbGender = (gcnew System::Windows::Forms::ComboBox());
 			this->dtDateTime = (gcnew System::Windows::Forms::DateTimePicker());
-			this->btnSubmit = (gcnew System::Windows::Forms::Button());
+			this->btnQueue = (gcnew System::Windows::Forms::Button());
 			this->lblTitle = (gcnew System::Windows::Forms::Label());
 			this->lblInmate = (gcnew System::Windows::Forms::Label());
 			this->txtInmate = (gcnew System::Windows::Forms::TextBox());
 			this->dgvVisitor = (gcnew System::Windows::Forms::DataGridView());
+			this->btnDequeue = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitor))->BeginInit();
 			this->SuspendLayout();
@@ -190,22 +194,22 @@ namespace Project4 {
 			this->dtDateTime->Size = System::Drawing::Size(254, 22);
 			this->dtDateTime->TabIndex = 10;
 			// 
-			// btnSubmit
+			// btnQueue
 			// 
-			this->btnSubmit->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
+			this->btnQueue->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
 				static_cast<System::Int32>(static_cast<System::Byte>(76)));
-			this->btnSubmit->FlatAppearance->BorderSize = 0;
-			this->btnSubmit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnQueue->FlatAppearance->BorderSize = 0;
+			this->btnQueue->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnQueue->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnSubmit->ForeColor = System::Drawing::Color::Transparent;
-			this->btnSubmit->Location = System::Drawing::Point(493, 234);
-			this->btnSubmit->Name = L"btnSubmit";
-			this->btnSubmit->Size = System::Drawing::Size(100, 31);
-			this->btnSubmit->TabIndex = 11;
-			this->btnSubmit->Text = L"SUBMIT";
-			this->btnSubmit->UseVisualStyleBackColor = false;
-			this->btnSubmit->Click += gcnew System::EventHandler(this, &VisitorForm::btnSubmit_Click);
+			this->btnQueue->ForeColor = System::Drawing::Color::Transparent;
+			this->btnQueue->Location = System::Drawing::Point(440, 234);
+			this->btnQueue->Name = L"btnQueue";
+			this->btnQueue->Size = System::Drawing::Size(100, 31);
+			this->btnQueue->TabIndex = 11;
+			this->btnQueue->Text = L"QUEUE";
+			this->btnQueue->UseVisualStyleBackColor = false;
+			this->btnQueue->Click += gcnew System::EventHandler(this, &VisitorForm::btnSubmit_Click);
 			// 
 			// lblTitle
 			// 
@@ -250,16 +254,33 @@ namespace Project4 {
 			this->dgvVisitor->Size = System::Drawing::Size(607, 150);
 			this->dgvVisitor->TabIndex = 15;
 			// 
+			// btnDequeue
+			// 
+			this->btnDequeue->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
+				static_cast<System::Int32>(static_cast<System::Byte>(76)));
+			this->btnDequeue->FlatAppearance->BorderSize = 0;
+			this->btnDequeue->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDequeue->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnDequeue->ForeColor = System::Drawing::Color::Transparent;
+			this->btnDequeue->Location = System::Drawing::Point(546, 234);
+			this->btnDequeue->Name = L"btnDequeue";
+			this->btnDequeue->Size = System::Drawing::Size(121, 31);
+			this->btnDequeue->TabIndex = 16;
+			this->btnDequeue->Text = L"DEQUEUE";
+			this->btnDequeue->UseVisualStyleBackColor = false;
+			// 
 			// VisitorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
+			this->Controls->Add(this->btnDequeue);
 			this->Controls->Add(this->dgvVisitor);
 			this->Controls->Add(this->txtInmate);
 			this->Controls->Add(this->lblInmate);
 			this->Controls->Add(this->lblTitle);
-			this->Controls->Add(this->btnSubmit);
+			this->Controls->Add(this->btnQueue);
 			this->Controls->Add(this->dtDateTime);
 			this->Controls->Add(this->cbGender);
 			this->Controls->Add(this->txtRelationship);
