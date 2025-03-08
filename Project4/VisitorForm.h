@@ -37,7 +37,7 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Label^ lblTitle;
+
 	private: System::Windows::Forms::Label^ lblName;
 	private: System::Windows::Forms::Label^ lblGender;
 	private: System::Windows::Forms::Label^ lblRelationship;
@@ -53,6 +53,11 @@ namespace Project4 {
 	private: System::Windows::Forms::ComboBox^ cbGender;
 	private: System::Windows::Forms::DateTimePicker^ dtDateTime;
 	private: System::Windows::Forms::Button^ btnSubmit;
+	private: System::Windows::Forms::Label^ lblTitle;
+	private: System::Windows::Forms::Label^ lblInmate;
+	private: System::Windows::Forms::TextBox^ txtInmate;
+	private: System::Windows::Forms::DataGridView^ dgvVisitor;
+
 
 
 
@@ -75,7 +80,6 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(VisitorForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->lblTitle = (gcnew System::Windows::Forms::Label());
 			this->lblName = (gcnew System::Windows::Forms::Label());
 			this->lblGender = (gcnew System::Windows::Forms::Label());
 			this->lblRelationship = (gcnew System::Windows::Forms::Label());
@@ -85,7 +89,12 @@ namespace Project4 {
 			this->cbGender = (gcnew System::Windows::Forms::ComboBox());
 			this->dtDateTime = (gcnew System::Windows::Forms::DateTimePicker());
 			this->btnSubmit = (gcnew System::Windows::Forms::Button());
+			this->lblTitle = (gcnew System::Windows::Forms::Label());
+			this->lblInmate = (gcnew System::Windows::Forms::Label());
+			this->txtInmate = (gcnew System::Windows::Forms::TextBox());
+			this->dgvVisitor = (gcnew System::Windows::Forms::DataGridView());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitor))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -99,29 +108,16 @@ namespace Project4 {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &VisitorForm::pictureBox1_Click);
 			// 
-			// lblTitle
-			// 
-			this->lblTitle->AutoSize = true;
-			this->lblTitle->BackColor = System::Drawing::Color::Transparent;
-			this->lblTitle->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblTitle->ForeColor = System::Drawing::Color::White;
-			this->lblTitle->Location = System::Drawing::Point(156, 62);
-			this->lblTitle->Name = L"lblTitle";
-			this->lblTitle->Size = System::Drawing::Size(484, 75);
-			this->lblTitle->TabIndex = 1;
-			this->lblTitle->Text = L"VISITOR\'S FORM";
-			// 
 			// lblName
 			// 
 			this->lblName->AutoSize = true;
 			this->lblName->BackColor = System::Drawing::Color::Transparent;
-			this->lblName->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblName->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblName->ForeColor = System::Drawing::Color::White;
-			this->lblName->Location = System::Drawing::Point(269, 150);
+			this->lblName->Location = System::Drawing::Point(110, 101);
 			this->lblName->Name = L"lblName";
-			this->lblName->Size = System::Drawing::Size(87, 21);
+			this->lblName->Size = System::Drawing::Size(78, 20);
 			this->lblName->TabIndex = 2;
 			this->lblName->Text = L"Full Name:";
 			// 
@@ -129,12 +125,12 @@ namespace Project4 {
 			// 
 			this->lblGender->AutoSize = true;
 			this->lblGender->BackColor = System::Drawing::Color::Transparent;
-			this->lblGender->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblGender->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblGender->ForeColor = System::Drawing::Color::White;
-			this->lblGender->Location = System::Drawing::Point(269, 215);
+			this->lblGender->Location = System::Drawing::Point(110, 166);
 			this->lblGender->Name = L"lblGender";
-			this->lblGender->Size = System::Drawing::Size(67, 21);
+			this->lblGender->Size = System::Drawing::Size(60, 20);
 			this->lblGender->TabIndex = 3;
 			this->lblGender->Text = L"Gender:";
 			// 
@@ -142,12 +138,12 @@ namespace Project4 {
 			// 
 			this->lblRelationship->AutoSize = true;
 			this->lblRelationship->BackColor = System::Drawing::Color::Transparent;
-			this->lblRelationship->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 10.2F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lblRelationship->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->lblRelationship->ForeColor = System::Drawing::Color::White;
-			this->lblRelationship->Location = System::Drawing::Point(269, 277);
+			this->lblRelationship->Location = System::Drawing::Point(413, 101);
 			this->lblRelationship->Name = L"lblRelationship";
-			this->lblRelationship->Size = System::Drawing::Size(177, 21);
+			this->lblRelationship->Size = System::Drawing::Size(161, 20);
 			this->lblRelationship->TabIndex = 4;
 			this->lblRelationship->Text = L"Relationship to Inmate:";
 			// 
@@ -155,25 +151,25 @@ namespace Project4 {
 			// 
 			this->lblDT->AutoSize = true;
 			this->lblDT->BackColor = System::Drawing::Color::Transparent;
-			this->lblDT->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblDT->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblDT->ForeColor = System::Drawing::Color::White;
-			this->lblDT->Location = System::Drawing::Point(269, 337);
+			this->lblDT->Location = System::Drawing::Point(413, 161);
 			this->lblDT->Name = L"lblDT";
-			this->lblDT->Size = System::Drawing::Size(118, 21);
+			this->lblDT->Size = System::Drawing::Size(107, 20);
 			this->lblDT->TabIndex = 5;
 			this->lblDT->Text = L"Date and Time:";
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(281, 178);
+			this->txtName->Location = System::Drawing::Point(122, 129);
 			this->txtName->Name = L"txtName";
 			this->txtName->Size = System::Drawing::Size(254, 22);
 			this->txtName->TabIndex = 7;
 			// 
 			// txtRelationship
 			// 
-			this->txtRelationship->Location = System::Drawing::Point(281, 304);
+			this->txtRelationship->Location = System::Drawing::Point(425, 128);
 			this->txtRelationship->Name = L"txtRelationship";
 			this->txtRelationship->Size = System::Drawing::Size(254, 22);
 			this->txtRelationship->TabIndex = 8;
@@ -182,14 +178,14 @@ namespace Project4 {
 			// 
 			this->cbGender->FormattingEnabled = true;
 			this->cbGender->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
-			this->cbGender->Location = System::Drawing::Point(281, 244);
+			this->cbGender->Location = System::Drawing::Point(122, 195);
 			this->cbGender->Name = L"cbGender";
 			this->cbGender->Size = System::Drawing::Size(254, 24);
 			this->cbGender->TabIndex = 9;
 			// 
 			// dtDateTime
 			// 
-			this->dtDateTime->Location = System::Drawing::Point(281, 363);
+			this->dtDateTime->Location = System::Drawing::Point(425, 187);
 			this->dtDateTime->Name = L"dtDateTime";
 			this->dtDateTime->Size = System::Drawing::Size(254, 22);
 			this->dtDateTime->TabIndex = 10;
@@ -203,19 +199,66 @@ namespace Project4 {
 			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnSubmit->ForeColor = System::Drawing::Color::Transparent;
-			this->btnSubmit->Location = System::Drawing::Point(344, 402);
+			this->btnSubmit->Location = System::Drawing::Point(493, 234);
 			this->btnSubmit->Name = L"btnSubmit";
-			this->btnSubmit->Size = System::Drawing::Size(112, 30);
+			this->btnSubmit->Size = System::Drawing::Size(100, 31);
 			this->btnSubmit->TabIndex = 11;
 			this->btnSubmit->Text = L"SUBMIT";
 			this->btnSubmit->UseVisualStyleBackColor = false;
 			this->btnSubmit->Click += gcnew System::EventHandler(this, &VisitorForm::btnSubmit_Click);
+			// 
+			// lblTitle
+			// 
+			this->lblTitle->AutoSize = true;
+			this->lblTitle->BackColor = System::Drawing::Color::Transparent;
+			this->lblTitle->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblTitle->ForeColor = System::Drawing::Color::White;
+			this->lblTitle->Location = System::Drawing::Point(339, 56);
+			this->lblTitle->Name = L"lblTitle";
+			this->lblTitle->Size = System::Drawing::Size(144, 25);
+			this->lblTitle->TabIndex = 12;
+			this->lblTitle->Text = L"Visitor\'s Form";
+			// 
+			// lblInmate
+			// 
+			this->lblInmate->AutoSize = true;
+			this->lblInmate->BackColor = System::Drawing::Color::Transparent;
+			this->lblInmate->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblInmate->ForeColor = System::Drawing::Color::White;
+			this->lblInmate->Location = System::Drawing::Point(110, 234);
+			this->lblInmate->Name = L"lblInmate";
+			this->lblInmate->Size = System::Drawing::Size(116, 20);
+			this->lblInmate->TabIndex = 13;
+			this->lblInmate->Text = L"Name of Inmate:";
+			// 
+			// txtInmate
+			// 
+			this->txtInmate->Location = System::Drawing::Point(122, 263);
+			this->txtInmate->Name = L"txtInmate";
+			this->txtInmate->Size = System::Drawing::Size(254, 22);
+			this->txtInmate->TabIndex = 14;
+			// 
+			// dgvVisitor
+			// 
+			this->dgvVisitor->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvVisitor->Location = System::Drawing::Point(94, 291);
+			this->dgvVisitor->Name = L"dgvVisitor";
+			this->dgvVisitor->RowHeadersWidth = 51;
+			this->dgvVisitor->RowTemplate->Height = 24;
+			this->dgvVisitor->Size = System::Drawing::Size(607, 150);
+			this->dgvVisitor->TabIndex = 15;
 			// 
 			// VisitorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
+			this->Controls->Add(this->dgvVisitor);
+			this->Controls->Add(this->txtInmate);
+			this->Controls->Add(this->lblInmate);
+			this->Controls->Add(this->lblTitle);
 			this->Controls->Add(this->btnSubmit);
 			this->Controls->Add(this->dtDateTime);
 			this->Controls->Add(this->cbGender);
@@ -225,7 +268,6 @@ namespace Project4 {
 			this->Controls->Add(this->lblRelationship);
 			this->Controls->Add(this->lblGender);
 			this->Controls->Add(this->lblName);
-			this->Controls->Add(this->lblTitle);
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"VisitorForm";
@@ -233,13 +275,14 @@ namespace Project4 {
 			this->Text = L"VisitorForm";
 			this->Load += gcnew System::EventHandler(this, &VisitorForm::VisitorForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitor))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 public: VisitorData^ visitorData = nullptr;
-public: String^ connString = "Data Source=Marvin-HP\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=12345;";
+public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
 	
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -254,6 +297,8 @@ private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs
 	lblRelationship->BackColor = System::Drawing::Color::Transparent;
 	lblDT->Parent = pictureBox1;
 	lblDT->BackColor = System::Drawing::Color::Transparent;
+	lblInmate->Parent = pictureBox1;
+	lblInmate->BackColor = System::Drawing::Color::Transparent;
 
 	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
 	sqlConn->Open();
@@ -265,10 +310,11 @@ private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs
 private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ fullName = txtName->Text;
 	String^ gender = cbGender->SelectedItem != nullptr ? cbGender->SelectedItem->ToString() : nullptr;
+	String^ inmateName = txtInmate->Text;
 	String^ relationship = txtRelationship->Text;
 	DateTime dateAndTime = dtDateTime->Value;
 
-	if (fullName->Length == 0 || gender == nullptr || relationship->Length == 0) {
+	if (fullName->Length == 0 || gender == nullptr || inmateName->Length == 0 || relationship->Length == 0) {
 		MessageBox::Show("Please enter all fields", "On or more empty fields",
 		MessageBoxButtons::OK);
 		return;
@@ -278,12 +324,13 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 		sqlConn.Open();
 
 		String^ sqlQuery = "INSERT INTO dbo.visitors " +
-			"(fullname, gender, relationship, dateAndTime) VALUES " +
-			"(@fullname, @gender, @relationship, @dateAndTime);";
+			"(fullname, gender, inmateName, relationship, dateAndTime) VALUES " +
+			"(@fullname, @gender, @inmateName, @relationship, @dateAndTime);";
 
 		SqlCommand command(sqlQuery, % sqlConn);
 		command.Parameters->AddWithValue("@fullname", fullName);
 		command.Parameters->AddWithValue("@gender", gender);
+		command.Parameters->AddWithValue("@inmateName", inmateName);
 		command.Parameters->AddWithValue("@relationship", relationship);
 		command.Parameters->AddWithValue("@dateAndTime", dateAndTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -291,6 +338,7 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 		visitorData = gcnew VisitorData;
 		visitorData->FullName = fullName;
 		visitorData->Gender = gender;
+		visitorData->InmateName = inmateName;
 		visitorData->Relationship = relationship;
 		visitorData->DateAndTime = dateAndTime;
 
@@ -300,6 +348,8 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 	catch (Exception^ ex){
 		MessageBox::Show("Failed to Log", "Log Failure", MessageBoxButtons::OK);
 	}
+}
+private: System::Void lblTitle_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

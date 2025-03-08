@@ -1,6 +1,7 @@
 #pragma once
 #include "InmateData.h"
 #include "Database.h"
+#include "User.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -18,6 +19,24 @@ namespace Project4 {
 	/// </summary>
 	public ref class UC_Inmates : public System::Windows::Forms::UserControl
 	{
+	private:
+		User^ user; // Declare user object
+		String^ userRole; // Store user role
+
+	public:
+		// Constructor to receive user object
+		UC_Inmates(User^ loggedInUser) {
+			InitializeComponent();
+			this->user = loggedInUser;  // Now 'user' is defined
+			this->userRole = user->Role;
+		
+		}
+	
+
+
+
+		// Add function prototypes here if needed
+
 	public:
 		UC_Inmates(void)
 		{
@@ -54,15 +73,6 @@ namespace Project4 {
 	private: System::Windows::Forms::TextBox^ txtBxInmateCaseDetails;
 	private: System::Windows::Forms::TextBox^ txtBxInmateCellNumber;
 
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^ lblSentence;
 	private: System::Windows::Forms::Label^ lblBehavior;
 	private: System::Windows::Forms::TextBox^ txtBxInmateSentence;
@@ -70,16 +80,7 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnSearch;
 	private: System::Windows::Forms::TextBox^ txtBxSearch;
 
-
-
-
-
-
-
-
-
-
-
+	
 
 
 
@@ -89,7 +90,7 @@ namespace Project4 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -382,58 +383,70 @@ namespace Project4 {
 
 		}
 #pragma endregion
-public: InmateData^ inmateData = nullptr;
-public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
+	public: InmateData^ inmateData = nullptr;
+	public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
+	
 
-private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^ e) {
-	lblName->Parent = pictureBox1;
-	lblName->BackColor = System::Drawing::Color::Transparent;
-	lblGender->Parent = pictureBox1;
-	lblGender->BackColor = System::Drawing::Color::Transparent;
-	lblAge->Parent = pictureBox1;
-	lblAge->BackColor = System::Drawing::Color::Transparent;
-	lblCellNum->Parent = pictureBox1;
-	lblCellNum->BackColor = System::Drawing::Color::Transparent;
-	lblSentence->Parent = pictureBox1;
-	lblSentence->BackColor = System::Drawing::Color::Transparent;
-	lblBehavior->Parent = pictureBox1;
-	lblBehavior->BackColor = System::Drawing::Color::Transparent;
-	btnSearch->Parent = pictureBox1;
-	btnSearch->BackColor = System::Drawing::Color::Transparent;
 
-	SqlConnection^ sqlConn = gcnew SqlConnection(connString);
-	sqlConn->Open();
+	private: System::Void UC_Inmates_Load(System::Object^ sender, System::EventArgs^ e) {
+		lblName->Parent = pictureBox1;
+		lblName->BackColor = System::Drawing::Color::Transparent;
+		lblGender->Parent = pictureBox1;
+		lblGender->BackColor = System::Drawing::Color::Transparent;
+		lblAge->Parent = pictureBox1;
+		lblAge->BackColor = System::Drawing::Color::Transparent;
+		lblCellNum->Parent = pictureBox1;
+		lblCellNum->BackColor = System::Drawing::Color::Transparent;
+		lblSentence->Parent = pictureBox1;
+		lblSentence->BackColor = System::Drawing::Color::Transparent;
+		lblBehavior->Parent = pictureBox1;
+		lblBehavior->BackColor = System::Drawing::Color::Transparent;
+		btnSearch->Parent = pictureBox1;
+		btnSearch->BackColor = System::Drawing::Color::Transparent;
 
-	SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.inmates", sqlConn);
-	SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
-	DataTable^ dt = gcnew DataTable();
-	da->Fill(dt);
-	dataGridViewInmates->DataSource = dt;
+		SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+		sqlConn->Open();
 
-	sqlConn->Close();
-}
+		SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.inmates", sqlConn);
+		SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+		DataTable^ dt = gcnew DataTable();
+		da->Fill(dt);
+		dataGridViewInmates->DataSource = dt;
+
+		sqlConn->Close();
+	}
+
 
 private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ fullName = txtBxInmateName->Text;
-	String^ age = txtBxInmateAge->Text;
-	String^ caseDetails = txtBxInmateCaseDetails->Text;
-	String^ sentenceLength = txtBxInmateSentence->Text;
-	String^ cellNumber = txtBxInmateCellNumber->Text;
-	String^ behaviourRecord = txtBxInmateBehaviour->Text;
 
+	if (userRole != "Warden") {
+		MessageBox::Show("Access Denied! Only Wardens can add inmate records.",
+			"Unauthorized Action", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	String^ fullName = txtBxInmateName->Text->Trim();
+	String^ age = txtBxInmateAge->Text->Trim();
+	String^ caseDetails = txtBxInmateCaseDetails->Text->Trim();
+	String^ sentenceLength = txtBxInmateSentence->Text->Trim();
+	String^ cellNumber = txtBxInmateCellNumber->Text->Trim();
+	String^ behaviourRecord = txtBxInmateBehaviour->Text->Trim();
+
+	// Validate required fields
 	if (fullName->Length == 0 || age->Length == 0
 		|| caseDetails->Length == 0 || sentenceLength->Length == 0
 		|| cellNumber->Length == 0 || behaviourRecord->Length == 0) {
-		
-		MessageBox::Show("Please enter all fields", "On or more empty fields",
-			MessageBoxButtons::OK);
+
+		MessageBox::Show("Please enter all fields", "One or more empty fields",
+			MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		return;
 	}
+
 	try {
+		// Database insertion
 		Database^ db = gcnew Database();
-		String^ sqlQuery = "INSERT INTO dbo.inmates " +
-			"(fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords) VALUES " +
-			"(@fullname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
+		String^ sqlQuery = "INSERT INTO dbo.inmates (fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords) " +
+			"VALUES (@fullname, @age, @caseDetails, @sentenceLength, @cellNumber, @behaviourRecords);";
 
 		array<SqlParameter^>^ parameters = {
 			gcnew SqlParameter("@fullname", fullName),
@@ -444,27 +457,31 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 			gcnew SqlParameter("@behaviourRecords", behaviourRecord),
 		};
 
-		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+		// Execute query
+		db->ExecuteQuery(sqlQuery, parameters);
 
-		inmateData = gcnew InmateData;
-		inmateData->FullName = fullName;
-		inmateData->Age = age;
-		inmateData->CaseDetails = caseDetails;
-		inmateData->SentenceLength = sentenceLength;
-		inmateData->CellNumber = cellNumber;
-		inmateData->BehaviourRecord = behaviourRecord;
-
-		MessageBox::Show("Success", "Inmate information added successfully",
-			MessageBoxButtons::OK);
-
+		MessageBox::Show("Inmate information added successfully.",
+			"Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	}
 	catch (Exception^ ex) {
-		MessageBox::Show("Failed to add inmate data", "Registration Failure",
-			MessageBoxButtons::OK);
+		MessageBox::Show("Failed to add inmate data. Error: " + ex->Message,
+			"Registration Failure", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
-	
 }
+
+
+
+
+
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	if (userRole != "Warden") {
+		MessageBox::Show("Access Denied: Only Wardens and Admins can update inmate records.",
+			"Permission Denied", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+
 	String^ fullName = txtBxInmateName->Text;
 	String^ age = txtBxInmateAge->Text;
 	String^ caseDetails = txtBxInmateCaseDetails->Text;
@@ -479,7 +496,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Please enter all fields", "On or more empty fields",
 			MessageBoxButtons::OK);
 		return;
-	}	
+	}
 	try {
 		Database^ db = gcnew Database();
 		String^ sqlQuery = "UPDATE dbo.inmates SET " +
@@ -507,33 +524,6 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Success", "Inmate information updated successfully",
 			MessageBoxButtons::OK);
 
-		/*
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
-
-		String^ sqlQuery = "UPDATE dbo.inmateData SET " +
-			"age=@age, caseDetails=@caseDetails, sentenceLength=@sentenceLength," + 
-			"cellNumber=@cellNumber, behaviourRecords=@behaviourRecords WHERE fullname=@fullname;"; 
-
-		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@fullname", fullName);
-		command.Parameters->AddWithValue("@age", age);
-		command.Parameters->AddWithValue("@caseDetails", caseDetails);
-		command.Parameters->AddWithValue("@sentenceLength", sentenceLength);
-		command.Parameters->AddWithValue("@cellNumber", cellNumber);
-		command.Parameters->AddWithValue("@behaviourRecords", behaviourRecord);
-
-		command.ExecuteNonQuery();
-		inmateData = gcnew InmateData;
-		inmateData->FullName = fullName;
-		inmateData->Age = age;
-		inmateData->CaseDetails = caseDetails;
-		inmateData->SentenceLength = sentenceLength;
-		inmateData->CellNumber = cellNumber;
-		inmateData->BehaviourRecord = behaviourRecord;
-
-		MessageBox::Show("Success", "Inmate information updated successfully",
-			MessageBoxButtons::OK);*/
 
 	}
 	catch (Exception^ ex) {
@@ -542,6 +532,13 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 	}
 }
 private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	if (userRole != "Warden" ) {
+		MessageBox::Show("Access Denied: Only Wardens and Admins can delete inmate records.",
+			"Permission Denied", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
 	String^ fullName = txtBxInmateName->Text;
 	String^ age = txtBxInmateAge->Text;
 	String^ caseDetails = txtBxInmateCaseDetails->Text;
@@ -577,8 +574,12 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 			MessageBoxButtons::OK);
 	}
 }
+
+
+
 private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ searchName = txtBxSearch->Text; 
+	
+	String^ searchName = txtBxSearch->Text->Trim();
 
 	if (searchName->Length == 0) {
 		MessageBox::Show("Please enter a name to search.", "Empty Search Field", MessageBoxButtons::OK);
@@ -586,34 +587,44 @@ private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^
 	}
 
 	try {
+		
 		Database^ db = gcnew Database();
-		String^ sqlQuery = "SELECT fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords "
-			"FROM dbo.inmates WHERE fullname = @searchName";
 
+		
+		String^ sqlQuery = "SELECT fullname, age, caseDetails, sentenceLength, cellNumber, behaviourRecords "
+			"FROM dbo.inmates WHERE fullname LIKE @searchName";
+
+		
 		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@searchName", searchName)
+			gcnew SqlParameter("@searchName", "%" + searchName + "%")
 		};
 
+		
 		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
 
-		if (reader->Read()) {
-			txtBxInmateName->Text = reader["fullname"]->ToString();
-			txtBxInmateAge->Text = reader["age"]->ToString();
-			txtBxInmateCaseDetails->Text = reader["caseDetails"]->ToString();
-			txtBxInmateSentence->Text = reader["sentenceLength"]->ToString();
-			txtBxInmateCellNumber->Text = reader["cellNumber"]->ToString();
-			txtBxInmateBehaviour->Text = reader["behaviourRecords"]->ToString();
+		
+		dataGridViewInmates->DataSource = nullptr;
 
-			MessageBox::Show("Inmate found!", "Search Successful", MessageBoxButtons::OK);
+		
+		DataTable^ dt = gcnew DataTable();
+		dt->Load(reader);
+
+		
+		if (dt->Rows->Count > 0) {
+			
+			dataGridViewInmates->DataSource = dt;
+			
 		}
 		else {
 			MessageBox::Show("No inmate found with the given name.", "Search Failed", MessageBoxButtons::OK);
 		}
 
+		
 		reader->Close();
 	}
 	catch (Exception^ ex) {
-		MessageBox::Show("Error while searching inmate data.", "Search Failure", MessageBoxButtons::OK);
+		
+		MessageBox::Show("Error while searching inmate data: " + ex->Message, "Search Failure", MessageBoxButtons::OK);
 	}
 }
 

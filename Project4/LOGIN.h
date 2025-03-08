@@ -235,59 +235,59 @@ private: System::Void textBox1_TextChanged(System::Object^ sender, System::Event
 }
 public: User^ user = nullptr;
 
-private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ username = this->txtName->Text;
-	String^ password = this->txtPassword->Text;
+	private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ username = this->txtName->Text;
+		String^ password = this->txtPassword->Text;
 
-	// Check if username or password is empty
-	if (username->Length == 0 || password->Length == 0) {
-		MessageBox::Show("Please enter your username and password.", "Login Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-		return;
-	}
-
-	try {
-		// Create database connection
-		Database^ db = gcnew Database();
-
-		// Correct SQL Query to retrieve only role-based access
-		String^ sqlQuery = "SELECT id, name, role FROM dbo.users WHERE name = @name AND password = @password;";
-
-		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@name", username),
-			gcnew SqlParameter("@password", password)
-		};
-
-		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
-
-		if (reader != nullptr && reader->Read()) {
-			int userId = reader->GetInt32(0);
-			String^ name = reader->GetString(1);
-			String^ role = reader->GetString(2); // Fetch user role
-
-			// Store user data in an object
-			user = gcnew User;
-			user->Id = userId;
-			user->Name = name;
-			user->Role = role;  // Store only role (no need for permission list)
-
-			// Redirect to the main menu (MenuAdmin) based on role
-			this->Hide();
-			Project4::MenuAdmin^ menuadmin = gcnew Project4::MenuAdmin(user);
-			menuadmin->ShowDialog();
-		}
-		else {
-			MessageBox::Show("Incorrect username or password.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		// Check if username or password is empty
+		if (username->Length == 0 || password->Length == 0) {
+			MessageBox::Show("Please enter your username and password.", "Login Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
 		}
 
-		if (reader != nullptr) {
-			reader->Close();
+		try {
+			// Create database connection
+			Database^ db = gcnew Database();
+
+			// Correct SQL Query to retrieve only role-based access
+			String^ sqlQuery = "SELECT id, name, role FROM dbo.users WHERE name = @name AND password = @password;";
+
+			array<SqlParameter^>^ parameters = {
+				gcnew SqlParameter("@name", username),
+				gcnew SqlParameter("@password", password)
+			};
+
+			SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+			if (reader != nullptr && reader->Read()) {
+				int userId = reader->GetInt32(0);
+				String^ name = reader->GetString(1);
+				String^ role = reader->GetString(2); // Fetch user role
+
+				// Store user data in an object
+				user = gcnew User;
+				user->Id = userId;
+				user->Name = name;
+				user->Role = role;  // Store only role (no need for permission list)
+
+				// Redirect to the main menu (MenuAdmin) based on role
+				this->Hide();
+				Project4::MenuAdmin^ menuadmin = gcnew Project4::MenuAdmin(user);
+				menuadmin->ShowDialog();
+			}
+			else {
+				MessageBox::Show("Incorrect username or password.", "Login Failed", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+
+			if (reader != nullptr) {
+				reader->Close();
+			}
 		}
-	}
-	catch (Exception^ ex) {
-		MessageBox::Show("Database connection failed: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
+		catch (Exception^ ex) {
+			MessageBox::Show("Database connection failed: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 	
-}
+	}
 private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 }

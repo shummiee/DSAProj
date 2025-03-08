@@ -20,4 +20,6 @@ public:
     User() {
         Permissions = gcnew List<String^>(); // Initialize Permissions list
     }
+
+   
 };

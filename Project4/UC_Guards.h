@@ -514,38 +514,57 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	}
 }
 private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {	
-	String^ fullName = txtSearch->Text; 
+	
+	String^ fullName = txtSearch->Text->Trim();
 
-    if (fullName->Length == 0) {
-        MessageBox::Show("Please enter a name to search.", "Empty Search Field", MessageBoxButtons::OK);
-        return;
-    }
+	if (fullName->Length == 0) {
+		MessageBox::Show("Please enter a name to search.", "Empty Search Field", MessageBoxButtons::OK);
+		return;
+	}
 
-    try {
-        Database^ db = gcnew Database();
-        String^ sqlQuery = "SELECT block, schedule FROM dbo.users WHERE name=@name;";
+	try {
+		
+		Database^ db = gcnew Database();
 
-        array<SqlParameter^>^ parameters = {
-            gcnew SqlParameter("@name", fullName)
-        };
+		
+		String^ sqlQuery = "SELECT block, schedule FROM dbo.users WHERE name=@name;";
 
-        SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+		
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@name", fullName)
+		};
 
-        if (reader->Read()) {
-            txtBxBlock->Text = reader["block"]->ToString();
-            dateTimePicker1->Value = Convert::ToDateTime(reader["schedule"]->ToString());
+		
+		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
 
-            MessageBox::Show("User found!", "Search Successful", MessageBoxButtons::OK);
-        }
-        else {
-            MessageBox::Show("No user found with the given name.", "Search Failed", MessageBoxButtons::OK);
-        }
+		
+		dataGridViewGuards->DataSource = nullptr;
 
-        reader->Close();
-    }
-    catch (Exception^ ex) {
-        MessageBox::Show("Error while searching user schedule: " + ex->Message, "Search Failure", MessageBoxButtons::OK);
-    }
+		
+		DataTable^ dt = gcnew DataTable();
+		dt->Load(reader);
+
+		
+		if (dt->Rows->Count > 0) {
+			
+			dataGridViewGuards->DataSource = dt;
+
+			
+			dataGridViewGuards->AutoResizeColumns();
+
+			MessageBox::Show("User found!", "Search Successful", MessageBoxButtons::OK);
+		}
+		else {
+			MessageBox::Show("No user found with the given name.", "Search Failed", MessageBoxButtons::OK);
+		}
+
+		
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		
+		MessageBox::Show("Error while searching user schedule: " + ex->Message, "Search Failure", MessageBoxButtons::OK);
+	}
 }
 private: System::Void dataGridViewGuards_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	if (e->RowIndex >= 0) { // Ensure the row index is valid

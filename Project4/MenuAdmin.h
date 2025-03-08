@@ -57,6 +57,13 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnExit;
 
 	private: System::Void MenuAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
+		if (user == nullptr) {
+			MessageBox::Show("User data not found. Please log in again.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			this->Close();
+			return;
+		}
+
+		//  Enforce button restrictions based on permissions
 		if (!user->Permissions->Contains("Can Add/Edit Inmates")) {
 			btnInmates->Enabled = false;
 		}
@@ -68,8 +75,9 @@ namespace Project4 {
 		}
 		if (!user->Permissions->Contains("Can View Logs")) {
 			btnVisitor->Enabled = false;
-		};
+		}
 	}
+
 
 
 
@@ -291,7 +299,7 @@ private: System::Void btnHome_Click(System::Object^ sender, System::EventArgs^ e
 
 	}
 private: System::Void btnInmates_Click(System::Object^ sender, System::EventArgs^ e) {
-		Project4::UC_Inmates^ uc_inmates = gcnew Project4::UC_Inmates();
+		Project4::UC_Inmates^ uc_inmates = gcnew Project4::UC_Inmates(user); // Pass the user object
 		panelUC->Controls->Clear();
 		uc_inmates->Dock = DockStyle::Fill;
 		panelUC->Controls->Add(uc_inmates);
@@ -310,18 +318,29 @@ private: System::Void btnGuards_Click(System::Object^ sender, System::EventArgs^
 	}
 }
 private: System::Void btnReport_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (user->Role == "Warden" || user->Role == "Admin") {
 	Project4::UC_Reports^ uc_report = gcnew Project4::UC_Reports();
 	panelUC->Controls->Clear();
 	uc_report->Dock = DockStyle::Fill;
 	panelUC->Controls->Add(uc_report);
 	uc_report->BringToFront();
+	}
+	else {
+		MessageBox::Show("Access Denied: Only Wardens and Admins can access this section.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
+
 private: System::Void btnVisitor_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (user->Role == "Warden" || user->Role == "Admin") {
 	Project4::UC_VisitorLog^ uc_visitor = gcnew Project4::UC_VisitorLog();
 	panelUC->Controls->Clear();
 	uc_visitor->Dock = DockStyle::Fill;
 	panelUC->Controls->Add(uc_visitor);
 	uc_visitor->BringToFront();
+	}
+	else {
+		MessageBox::Show("Access Denied: Only Wardens and Admins can access this section.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
