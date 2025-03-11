@@ -130,7 +130,6 @@
     <ClCompile Include="UC_Guards.cpp" />
     <ClCompile Include="UC_Home.cpp" />
     <ClCompile Include="UC_Inmates.cpp" />
-    <ClCompile Include="UC_Reports.cpp" />
     <ClCompile Include="UC_VisitorLog.cpp" />
     <ClCompile Include="VisitorForm.cpp" />
   </ItemGroup>
@@ -153,9 +152,6 @@
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="UC_Inmates.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
-    <ClInclude Include="UC_Reports.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="UC_VisitorLog.h">
@@ -185,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Inmates.resx">
       <DependentUpon>UC_Inmates.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UC_Reports.resx">
-      <DependentUpon>UC_Reports.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_VisitorLog.resx">
       <DependentUpon>UC_VisitorLog.h</DependentUpon>

@@ -40,6 +40,10 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	protected:
+
+	protected:
+
 	private: System::Windows::Forms::TextBox^ txtBxAge;
 
 
@@ -68,8 +72,10 @@ namespace Project4 {
 	private: System::Windows::Forms::DataGridView^ dataGridViewGuards;
 
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
-	private: System::Windows::Forms::Button^ btnSearch;
+
 	private: System::Windows::Forms::TextBox^ txtSearch;
+	private: System::Windows::Forms::PictureBox^ btnSearch;
+
 
 
 	protected:
@@ -103,10 +109,11 @@ namespace Project4 {
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewGuards = (gcnew System::Windows::Forms::DataGridView());
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
-			this->btnSearch = (gcnew System::Windows::Forms::Button());
 			this->txtSearch = (gcnew System::Windows::Forms::TextBox());
+			this->btnSearch = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewGuards))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->btnSearch))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -114,6 +121,7 @@ namespace Project4 {
 			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -126,11 +134,12 @@ namespace Project4 {
 			// 
 			// txtBxAge
 			// 
-			this->txtBxAge->Location = System::Drawing::Point(335, 397);
+			this->txtBxAge->Location = System::Drawing::Point(397, 397);
 			this->txtBxAge->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBxAge->Name = L"txtBxAge";
-			this->txtBxAge->Size = System::Drawing::Size(253, 22);
+			this->txtBxAge->Size = System::Drawing::Size(191, 22);
 			this->txtBxAge->TabIndex = 37;
+			this->txtBxAge->TextChanged += gcnew System::EventHandler(this, &UC_Guards::txtBxAge_TextChanged);
 			// 
 			// lblSchedule
 			// 
@@ -144,6 +153,7 @@ namespace Project4 {
 			this->lblSchedule->Size = System::Drawing::Size(105, 16);
 			this->lblSchedule->TabIndex = 34;
 			this->lblSchedule->Text = L"Scheduled Duty:";
+			this->lblSchedule->Click += gcnew System::EventHandler(this, &UC_Guards::lblSchedule_Click);
 			// 
 			// textBox3
 			// 
@@ -152,6 +162,7 @@ namespace Project4 {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(179, 22);
 			this->textBox3->TabIndex = 32;
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &UC_Guards::textBox3_TextChanged);
 			// 
 			// txtBxBlock
 			// 
@@ -160,6 +171,7 @@ namespace Project4 {
 			this->txtBxBlock->Name = L"txtBxBlock";
 			this->txtBxBlock->Size = System::Drawing::Size(179, 22);
 			this->txtBxBlock->TabIndex = 31;
+			this->txtBxBlock->TextChanged += gcnew System::EventHandler(this, &UC_Guards::txtBxBlock_TextChanged);
 			// 
 			// lblAge
 			// 
@@ -176,11 +188,12 @@ namespace Project4 {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(76, 400);
+			this->textBox1->Location = System::Drawing::Point(84, 400);
 			this->textBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(187, 22);
+			this->textBox1->Size = System::Drawing::Size(179, 22);
 			this->textBox1->TabIndex = 29;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &UC_Guards::textBox1_TextChanged);
 			// 
 			// lblGender
 			// 
@@ -234,7 +247,7 @@ namespace Project4 {
 			this->btnDelete->Location = System::Drawing::Point(361, 355);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(75, 25);
+			this->btnDelete->Size = System::Drawing::Size(84, 25);
 			this->btnDelete->TabIndex = 24;
 			this->btnDelete->Text = L"DELETE";
 			this->btnDelete->UseVisualStyleBackColor = false;
@@ -253,7 +266,7 @@ namespace Project4 {
 			this->btnUpdate->Location = System::Drawing::Point(248, 355);
 			this->btnUpdate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdate->Name = L"btnUpdate";
-			this->btnUpdate->Size = System::Drawing::Size(75, 25);
+			this->btnUpdate->Size = System::Drawing::Size(86, 25);
 			this->btnUpdate->TabIndex = 23;
 			this->btnUpdate->Text = L"UPDATE";
 			this->btnUpdate->UseVisualStyleBackColor = false;
@@ -272,7 +285,7 @@ namespace Project4 {
 			this->btnAdd->Location = System::Drawing::Point(140, 355);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(75, 25);
+			this->btnAdd->Size = System::Drawing::Size(85, 25);
 			this->btnAdd->TabIndex = 22;
 			this->btnAdd->Text = L"ADD";
 			this->btnAdd->UseVisualStyleBackColor = false;
@@ -297,24 +310,26 @@ namespace Project4 {
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(191, 22);
 			this->dateTimePicker1->TabIndex = 38;
-			// 
-			// btnSearch
-			// 
-			this->btnSearch->BackColor = System::Drawing::Color::Transparent;
-			this->btnSearch->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSearch.Image")));
-			this->btnSearch->Location = System::Drawing::Point(543, 6);
-			this->btnSearch->Name = L"btnSearch";
-			this->btnSearch->Size = System::Drawing::Size(40, 40);
-			this->btnSearch->TabIndex = 40;
-			this->btnSearch->UseVisualStyleBackColor = false;
-			this->btnSearch->Click += gcnew System::EventHandler(this, &UC_Guards::btnSearch_Click);
+			this->dateTimePicker1->ValueChanged += gcnew System::EventHandler(this, &UC_Guards::dateTimePicker1_ValueChanged);
 			// 
 			// txtSearch
 			// 
-			this->txtSearch->Location = System::Drawing::Point(374, 15);
+			this->txtSearch->Location = System::Drawing::Point(378, 17);
 			this->txtSearch->Name = L"txtSearch";
 			this->txtSearch->Size = System::Drawing::Size(163, 22);
 			this->txtSearch->TabIndex = 39;
+			this->txtSearch->TextChanged += gcnew System::EventHandler(this, &UC_Guards::txtSearch_TextChanged);
+			// 
+			// btnSearch
+			// 
+			this->btnSearch->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSearch.Image")));
+			this->btnSearch->Location = System::Drawing::Point(547, 8);
+			this->btnSearch->Name = L"btnSearch";
+			this->btnSearch->Size = System::Drawing::Size(40, 40);
+			this->btnSearch->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->btnSearch->TabIndex = 40;
+			this->btnSearch->TabStop = false;
+			this->btnSearch->Click += gcnew System::EventHandler(this, &UC_Guards::pictureBox2_Click);
 			// 
 			// UC_Guards
 			// 
@@ -343,6 +358,7 @@ namespace Project4 {
 			this->Load += gcnew System::EventHandler(this, &UC_Guards::UC_Guards_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewGuards))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->btnSearch))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -351,6 +367,66 @@ namespace Project4 {
 
 public: User^ users = nullptr;
 public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
+private:
+	void RefreshDataGridView() {
+		try {
+			SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+			sqlConn->Open();
+
+			SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.users", sqlConn);
+			SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+			DataTable^ dt = gcnew DataTable();
+			da->Fill(dt);
+			dataGridViewGuards->DataSource = dt;
+
+			sqlConn->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Error refreshing DataGridView: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+private:
+	void PerformSearch()
+	{
+		String^ searchText = txtSearch->Text->Trim();
+
+		if (searchText->Length == 0)
+		{
+			// If the search box is empty, refresh the DataGridView to show all records
+			RefreshDataGridView();
+			return;
+		}
+
+		try
+		{
+			Database^ db = gcnew Database();
+			String^ sqlQuery = "SELECT * FROM dbo.users WHERE name LIKE @searchText;";
+
+			array<SqlParameter^>^ parameters = {
+				gcnew SqlParameter("@searchText", "%" + searchText + "%")
+			};
+
+			SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+			DataTable^ dt = gcnew DataTable();
+			dt->Load(reader);
+
+			if (dt->Rows->Count > 0)
+			{
+				dataGridViewGuards->DataSource = dt;
+			}
+			else
+			{
+				MessageBox::Show("No records found.", "Search", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+
+			reader->Close();
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Error while searching: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
 
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -411,27 +487,10 @@ private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e)
 		users->Block = block;
 		users->Schedule = schedule;
 
+		RefreshDataGridView();
 		MessageBox::Show("Successfully Added Officer's Schedule", "Success", 
 			MessageBoxButtons::OK);
 	
-		/*SqlConnection sqlConn(connString);
-		sqlConn.Open();
-
-		String^ sqlQuery = "UPDATE dbo.users SET block=@block, schedule=@schedule WHERE firstname=@firstname;";
-
-		SqlCommand command(sqlQuery, % sqlConn);
-		command.Parameters->AddWithValue("@firstname", fullName);
-		command.Parameters->AddWithValue("@block", block);
-		command.Parameters->AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
-
-		command.ExecuteNonQuery();
-		users = gcnew User;
-		users->Name = fullName;
-		users->Block = block;
-		users->Schedule = schedule;
-
-		MessageBox::Show("Successfully added Officer Schedule", "Success",
-			MessageBoxButtons::OK);*/
 
 	}
 	catch (Exception^ ex) {
@@ -466,7 +525,7 @@ private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^
 		users->Name = fullName;
 		users->Block = block;
 		users->Schedule = schedule;
-
+		RefreshDataGridView();
 		MessageBox::Show("Successfully Updated Officer's Schedule", "Success",
 			MessageBoxButtons::OK);
 
@@ -503,7 +562,7 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 		users->Name = fullName;
 		users->Block = block;
 		users->Schedule = schedule;
-
+		RefreshDataGridView();
 		MessageBox::Show("Successfully Added Officer's Schedule", "Success",
 			MessageBoxButtons::OK);
 
@@ -513,59 +572,8 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 			MessageBoxButtons::OK);
 	}
 }
-private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {	
-	
-	String^ fullName = txtSearch->Text->Trim();
+private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {}
 
-	if (fullName->Length == 0) {
-		MessageBox::Show("Please enter a name to search.", "Empty Search Field", MessageBoxButtons::OK);
-		return;
-	}
-
-	try {
-		
-		Database^ db = gcnew Database();
-
-		
-		String^ sqlQuery = "SELECT block, schedule FROM dbo.users WHERE name=@name;";
-
-		
-		array<SqlParameter^>^ parameters = {
-			gcnew SqlParameter("@name", fullName)
-		};
-
-		
-		SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
-
-		
-		dataGridViewGuards->DataSource = nullptr;
-
-		
-		DataTable^ dt = gcnew DataTable();
-		dt->Load(reader);
-
-		
-		if (dt->Rows->Count > 0) {
-			
-			dataGridViewGuards->DataSource = dt;
-
-			
-			dataGridViewGuards->AutoResizeColumns();
-
-			MessageBox::Show("User found!", "Search Successful", MessageBoxButtons::OK);
-		}
-		else {
-			MessageBox::Show("No user found with the given name.", "Search Failed", MessageBoxButtons::OK);
-		}
-
-		
-		reader->Close();
-	}
-	catch (Exception^ ex) {
-		
-		MessageBox::Show("Error while searching user schedule: " + ex->Message, "Search Failure", MessageBoxButtons::OK);
-	}
-}
 private: System::Void dataGridViewGuards_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	if (e->RowIndex >= 0) { // Ensure the row index is valid
 		DataGridViewRow^ row = this->dataGridViewGuards->Rows[e->RowIndex];
@@ -577,7 +585,27 @@ private: System::Void dataGridViewGuards_CellClick(System::Object^ sender, Syste
 		dateTimePicker1->Value = Convert::ToDateTime(row->Cells["schedule"]->Value->ToString());
 	}
 }
+private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+	PerformSearch();
 }
+
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void txtBxBlock_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void txtBxAge_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void lblSchedule_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void txtSearch_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	PerformSearch();
+}
+}
+
 ;
 }
 

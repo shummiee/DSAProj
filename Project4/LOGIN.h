@@ -2,6 +2,7 @@
 #include "User.h"
 #include "MenuAdmin.h"
 #include "Database.h"
+#include "MyForm1.h"
 
 
 
@@ -46,9 +47,11 @@ namespace Project4 {
 	protected:
 
 	private: System::Windows::Forms::TextBox^ txtName;
+	private: System::Windows::Forms::TextBox^ txtPass;
 
 
-	private: System::Windows::Forms::TextBox^ txtPassword;
+
+
 
 
 
@@ -61,6 +64,8 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnLogin;
 	private: System::Windows::Forms::Button^ btnCancel;
 	private: System::Windows::Forms::Button^ btnExit;
+	private: System::Windows::Forms::CheckBox^ cbShowPass;
+
 
 
 
@@ -87,12 +92,13 @@ namespace Project4 {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LOGIN::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
-			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
+			this->txtPass = (gcnew System::Windows::Forms::TextBox());
 			this->lblName = (gcnew System::Windows::Forms::Label());
 			this->lblPass = (gcnew System::Windows::Forms::Label());
 			this->btnLogin = (gcnew System::Windows::Forms::Button());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->btnExit = (gcnew System::Windows::Forms::Button());
+			this->cbShowPass = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -117,13 +123,15 @@ namespace Project4 {
 			this->txtName->Size = System::Drawing::Size(235, 22);
 			this->txtName->TabIndex = 2;
 			// 
-			// txtPassword
+			// txtPass
 			// 
-			this->txtPassword->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->txtPassword->Location = System::Drawing::Point(468, 273);
-			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(235, 22);
-			this->txtPassword->TabIndex = 5;
+			this->txtPass->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->txtPass->Location = System::Drawing::Point(468, 273);
+			this->txtPass->Name = L"txtPass";
+			this->txtPass->Size = System::Drawing::Size(235, 22);
+			this->txtPass->TabIndex = 5;
+			this->txtPass->UseSystemPasswordChar = true;
+			this->txtPass->TextChanged += gcnew System::EventHandler(this, &LOGIN::txtPassword_TextChanged);
 			// 
 			// lblName
 			// 
@@ -199,17 +207,33 @@ namespace Project4 {
 			this->btnExit->UseVisualStyleBackColor = false;
 			this->btnExit->Click += gcnew System::EventHandler(this, &LOGIN::btnExit_Click);
 			// 
+			// cbShowPass
+			// 
+			this->cbShowPass->AutoSize = true;
+			this->cbShowPass->BackColor = System::Drawing::Color::Transparent;
+			this->cbShowPass->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->cbShowPass->ForeColor = System::Drawing::Color::White;
+			this->cbShowPass->Location = System::Drawing::Point(586, 301);
+			this->cbShowPass->Name = L"cbShowPass";
+			this->cbShowPass->Size = System::Drawing::Size(117, 21);
+			this->cbShowPass->TabIndex = 14;
+			this->cbShowPass->Text = L"Show Password";
+			this->cbShowPass->UseVisualStyleBackColor = false;
+			this->cbShowPass->CheckedChanged += gcnew System::EventHandler(this, &LOGIN::cbShowPass_CheckedChanged);
+			// 
 			// LOGIN
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
+			this->Controls->Add(this->cbShowPass);
 			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnLogin);
 			this->Controls->Add(this->lblPass);
 			this->Controls->Add(this->lblName);
-			this->Controls->Add(this->txtPassword);
+			this->Controls->Add(this->txtPass);
 			this->Controls->Add(this->txtName);
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
@@ -230,6 +254,8 @@ private: System::Void LOGIN_Load(System::Object^ sender, System::EventArgs^ e) {
 	lblName->BackColor = System::Drawing::Color::Transparent;
 	lblPass->Parent = pictureBox1;
 	lblPass->BackColor = System::Drawing::Color::Transparent;
+	cbShowPass->Parent = pictureBox1;
+	cbShowPass->BackColor = System::Drawing::Color::Transparent;
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -237,7 +263,7 @@ public: User^ user = nullptr;
 
 	private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ username = this->txtName->Text;
-		String^ password = this->txtPassword->Text;
+		String^ password = this->txtPass->Text;
 
 		// Check if username or password is empty
 		if (username->Length == 0 || password->Length == 0) {
@@ -292,7 +318,21 @@ private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e
 	Application::Exit();
 }
 private: System::Void btnCancel_Click(System::Object^ sender, System::EventArgs^ e) {
-	
+	Project4::MyForm1 menu;
+	menu.ShowDialog();
+	this->Hide();
+}
+private: System::Void txtPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void cbShowPass_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (cbShowPass->Checked == true)
+	{
+		txtPass->UseSystemPasswordChar = false;
+	}
+	else
+	{
+		txtPass->UseSystemPasswordChar = true;
+	}
 }
 };
 }

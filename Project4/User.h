@@ -14,6 +14,8 @@ public:
     String^ Role;
     String^ Block;
     DateTime^ Schedule;
+    String^ Age;
+    String^ Gender;
     List<String^>^ Permissions; // Add this for Role-Based Access Control (RBAC)
 
     // Constructor

@@ -1,4 +1,6 @@
 #pragma once
+#include "VisitorData.h"
+#include "Database.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -6,6 +8,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+using namespace System::Data::SqlClient;
 
 
 namespace Project4 {
@@ -36,7 +39,8 @@ namespace Project4 {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dgvVisitorLog;
+
 	private: System::Windows::Forms::TextBox^ txtSearch;
 
 	private: System::Windows::Forms::Button^ btnSearch;
@@ -59,11 +63,11 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(UC_VisitorLog::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dgvVisitorLog = (gcnew System::Windows::Forms::DataGridView());
 			this->txtSearch = (gcnew System::Windows::Forms::TextBox());
 			this->btnSearch = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitorLog))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -77,15 +81,15 @@ namespace Project4 {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &UC_VisitorLog::pictureBox1_Click);
 			// 
-			// dataGridView1
+			// dgvVisitorLog
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(26, 101);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(545, 353);
-			this->dataGridView1->TabIndex = 3;
+			this->dgvVisitorLog->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvVisitorLog->Location = System::Drawing::Point(26, 101);
+			this->dgvVisitorLog->Name = L"dgvVisitorLog";
+			this->dgvVisitorLog->RowHeadersWidth = 51;
+			this->dgvVisitorLog->RowTemplate->Height = 24;
+			this->dgvVisitorLog->Size = System::Drawing::Size(545, 353);
+			this->dgvVisitorLog->TabIndex = 3;
 			// 
 			// txtSearch
 			// 
@@ -93,6 +97,7 @@ namespace Project4 {
 			this->txtSearch->Name = L"txtSearch";
 			this->txtSearch->Size = System::Drawing::Size(163, 22);
 			this->txtSearch->TabIndex = 4;
+			this->txtSearch->TextChanged += gcnew System::EventHandler(this, &UC_VisitorLog::txtSearch_TextChanged);
 			// 
 			// btnSearch
 			// 
@@ -103,6 +108,7 @@ namespace Project4 {
 			this->btnSearch->Size = System::Drawing::Size(40, 40);
 			this->btnSearch->TabIndex = 5;
 			this->btnSearch->UseVisualStyleBackColor = false;
+			this->btnSearch->Click += gcnew System::EventHandler(this, &UC_VisitorLog::btnSearch_Click);
 			// 
 			// UC_VisitorLog
 			// 
@@ -110,23 +116,93 @@ namespace Project4 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Controls->Add(this->btnSearch);
 			this->Controls->Add(this->txtSearch);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dgvVisitorLog);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"UC_VisitorLog";
 			this->Size = System::Drawing::Size(600, 500);
 			this->Load += gcnew System::EventHandler(this, &UC_VisitorLog::UC_VisitorLog_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitorLog))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void UC_VisitorLog_Load(System::Object^ sender, System::EventArgs^ e) {
+public:  VisitorData^ visitorData = nullptr;
+public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
+
+private:
+	void RefreshDataGridView() {
+		try {
+			SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+			sqlConn->Open();
+
+			SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.visitors", sqlConn);
+			SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+			DataTable^ dt = gcnew DataTable();
+			da->Fill(dt);
+			dgvVisitorLog->DataSource = dt;
+
+			sqlConn->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Error refreshing DataGridView: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+	private:
+		void PerformSearch()
+		{
+			String^ searchText = txtSearch->Text->Trim();
+
+			if (searchText->Length == 0)
+			{
+				// If the search box is empty, refresh the DataGridView to show all records
+				RefreshDataGridView();
+				return;
+			}
+
+			try
+			{
+				Database^ db = gcnew Database();
+				String^ sqlQuery = "SELECT * FROM dbo.vistors WHERE fullname LIKE @searchText;";
+
+				array<SqlParameter^>^ parameters = {
+					gcnew SqlParameter("@searchText", "%" + searchText + "%")
+				};
+
+				SqlDataReader^ reader = db->ExecuteQuery(sqlQuery, parameters);
+
+				DataTable^ dt = gcnew DataTable();
+				dt->Load(reader);
+
+				if (dt->Rows->Count > 0)
+				{
+					dgvVisitorLog->DataSource = dt;
+				}
+				else
+				{
+					MessageBox::Show("No records found.", "Search", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+
+				reader->Close();
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show("Error while searching: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+private: System::Void UC_VisitorLog_Load(System::Object^ sender, System::EventArgs^ e) {
 		btnSearch->Parent = pictureBox1;
 		btnSearch->BackColor = System::Drawing::Color::Transparent;
+		RefreshDataGridView();
 	}
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnSearch_Click(System::Object^ sender, System::EventArgs^ e) {
+	PerformSearch();
+}
+private: System::Void txtSearch_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	PerformSearch();
 }
 };
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "VisitorData.h"
+#include "Database.h"
 
 namespace Project4 {
 
@@ -58,7 +59,8 @@ namespace Project4 {
 	private: System::Windows::Forms::Label^ lblInmate;
 	private: System::Windows::Forms::TextBox^ txtInmate;
 	private: System::Windows::Forms::DataGridView^ dgvVisitor;
-	private: System::Windows::Forms::Button^ btnDequeue;
+	private: System::Windows::Forms::Button^ btnExit;
+
 
 
 
@@ -96,7 +98,7 @@ namespace Project4 {
 			this->lblInmate = (gcnew System::Windows::Forms::Label());
 			this->txtInmate = (gcnew System::Windows::Forms::TextBox());
 			this->dgvVisitor = (gcnew System::Windows::Forms::DataGridView());
-			this->btnDequeue = (gcnew System::Windows::Forms::Button());
+			this->btnExit = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVisitor))->BeginInit();
 			this->SuspendLayout();
@@ -132,7 +134,7 @@ namespace Project4 {
 			this->lblGender->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblGender->ForeColor = System::Drawing::Color::White;
-			this->lblGender->Location = System::Drawing::Point(110, 166);
+			this->lblGender->Location = System::Drawing::Point(110, 156);
 			this->lblGender->Name = L"lblGender";
 			this->lblGender->Size = System::Drawing::Size(60, 20);
 			this->lblGender->TabIndex = 3;
@@ -158,7 +160,7 @@ namespace Project4 {
 			this->lblDT->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblDT->ForeColor = System::Drawing::Color::White;
-			this->lblDT->Location = System::Drawing::Point(413, 161);
+			this->lblDT->Location = System::Drawing::Point(413, 155);
 			this->lblDT->Name = L"lblDT";
 			this->lblDT->Size = System::Drawing::Size(107, 20);
 			this->lblDT->TabIndex = 5;
@@ -166,14 +168,14 @@ namespace Project4 {
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(122, 129);
+			this->txtName->Location = System::Drawing::Point(122, 128);
 			this->txtName->Name = L"txtName";
 			this->txtName->Size = System::Drawing::Size(254, 22);
 			this->txtName->TabIndex = 7;
 			// 
 			// txtRelationship
 			// 
-			this->txtRelationship->Location = System::Drawing::Point(425, 128);
+			this->txtRelationship->Location = System::Drawing::Point(425, 126);
 			this->txtRelationship->Name = L"txtRelationship";
 			this->txtRelationship->Size = System::Drawing::Size(254, 22);
 			this->txtRelationship->TabIndex = 8;
@@ -182,14 +184,14 @@ namespace Project4 {
 			// 
 			this->cbGender->FormattingEnabled = true;
 			this->cbGender->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
-			this->cbGender->Location = System::Drawing::Point(122, 195);
+			this->cbGender->Location = System::Drawing::Point(122, 183);
 			this->cbGender->Name = L"cbGender";
 			this->cbGender->Size = System::Drawing::Size(254, 24);
 			this->cbGender->TabIndex = 9;
 			// 
 			// dtDateTime
 			// 
-			this->dtDateTime->Location = System::Drawing::Point(425, 187);
+			this->dtDateTime->Location = System::Drawing::Point(425, 181);
 			this->dtDateTime->Name = L"dtDateTime";
 			this->dtDateTime->Size = System::Drawing::Size(254, 22);
 			this->dtDateTime->TabIndex = 10;
@@ -203,11 +205,11 @@ namespace Project4 {
 			this->btnQueue->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnQueue->ForeColor = System::Drawing::Color::Transparent;
-			this->btnQueue->Location = System::Drawing::Point(440, 234);
+			this->btnQueue->Location = System::Drawing::Point(506, 218);
 			this->btnQueue->Name = L"btnQueue";
 			this->btnQueue->Size = System::Drawing::Size(100, 31);
 			this->btnQueue->TabIndex = 11;
-			this->btnQueue->Text = L"QUEUE";
+			this->btnQueue->Text = L"SUBMIT";
 			this->btnQueue->UseVisualStyleBackColor = false;
 			this->btnQueue->Click += gcnew System::EventHandler(this, &VisitorForm::btnSubmit_Click);
 			// 
@@ -231,7 +233,7 @@ namespace Project4 {
 			this->lblInmate->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblInmate->ForeColor = System::Drawing::Color::White;
-			this->lblInmate->Location = System::Drawing::Point(110, 234);
+			this->lblInmate->Location = System::Drawing::Point(110, 216);
 			this->lblInmate->Name = L"lblInmate";
 			this->lblInmate->Size = System::Drawing::Size(116, 20);
 			this->lblInmate->TabIndex = 13;
@@ -239,7 +241,7 @@ namespace Project4 {
 			// 
 			// txtInmate
 			// 
-			this->txtInmate->Location = System::Drawing::Point(122, 263);
+			this->txtInmate->Location = System::Drawing::Point(122, 243);
 			this->txtInmate->Name = L"txtInmate";
 			this->txtInmate->Size = System::Drawing::Size(254, 22);
 			this->txtInmate->TabIndex = 14;
@@ -247,35 +249,34 @@ namespace Project4 {
 			// dgvVisitor
 			// 
 			this->dgvVisitor->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvVisitor->Location = System::Drawing::Point(94, 291);
+			this->dgvVisitor->Location = System::Drawing::Point(94, 273);
 			this->dgvVisitor->Name = L"dgvVisitor";
 			this->dgvVisitor->RowHeadersWidth = 51;
 			this->dgvVisitor->RowTemplate->Height = 24;
-			this->dgvVisitor->Size = System::Drawing::Size(607, 150);
+			this->dgvVisitor->Size = System::Drawing::Size(607, 170);
 			this->dgvVisitor->TabIndex = 15;
+			this->dgvVisitor->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &VisitorForm::dgvVisitor_CellClick);
 			// 
-			// btnDequeue
+			// btnExit
 			// 
-			this->btnDequeue->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
-				static_cast<System::Int32>(static_cast<System::Byte>(76)));
-			this->btnDequeue->FlatAppearance->BorderSize = 0;
-			this->btnDequeue->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDequeue->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnDequeue->ForeColor = System::Drawing::Color::Transparent;
-			this->btnDequeue->Location = System::Drawing::Point(546, 234);
-			this->btnDequeue->Name = L"btnDequeue";
-			this->btnDequeue->Size = System::Drawing::Size(121, 31);
-			this->btnDequeue->TabIndex = 16;
-			this->btnDequeue->Text = L"DEQUEUE";
-			this->btnDequeue->UseVisualStyleBackColor = false;
+			this->btnExit->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->btnExit->FlatAppearance->BorderSize = 0;
+			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnExit->ForeColor = System::Drawing::Color::Navy;
+			this->btnExit->Location = System::Drawing::Point(748, 12);
+			this->btnExit->Name = L"btnExit";
+			this->btnExit->Size = System::Drawing::Size(30, 23);
+			this->btnExit->TabIndex = 16;
+			this->btnExit->Text = L"X";
+			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &VisitorForm::btnExit_Click);
 			// 
 			// VisitorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(800, 500);
-			this->Controls->Add(this->btnDequeue);
+			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->dgvVisitor);
 			this->Controls->Add(this->txtInmate);
 			this->Controls->Add(this->lblInmate);
@@ -304,7 +305,24 @@ namespace Project4 {
 #pragma endregion
 public: VisitorData^ visitorData = nullptr;
 public: String^ connString = "Data Source=DESKTOP-4FAVDCA\\SQLEXPRESS;Initial Catalog=tryDSA;Persist Security Info=True;User ID=sa;Password=kirkmanuel;";
-	
+private:
+	void RefreshDataGridView() {
+		try {
+			SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+			sqlConn->Open();
+
+			SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.visitors", sqlConn);
+			SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+			DataTable^ dt = gcnew DataTable();
+			da->Fill(dt);
+			dgvVisitor->DataSource = dt;
+
+			sqlConn->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Error refreshing DataGridView: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -326,6 +344,11 @@ private: System::Void VisitorForm_Load(System::Object^ sender, System::EventArgs
 
 	SqlCommand^ command = gcnew SqlCommand("SELECT * FROM dbo.visitors", sqlConn);
 	SqlDataAdapter^ da = gcnew SqlDataAdapter(command);
+	DataTable^ dt = gcnew DataTable();
+	da->Fill(dt);
+	dgvVisitor->DataSource = dt;
+
+	sqlConn->Close();
 }
 
 private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -335,12 +358,13 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 	String^ relationship = txtRelationship->Text;
 	DateTime dateAndTime = dtDateTime->Value;
 
-	if (fullName->Length == 0 || gender == nullptr || inmateName->Length == 0 || relationship->Length == 0) {
+	if (fullName->Length == 0 || inmateName->Length == 0 || relationship->Length == 0) {
 		MessageBox::Show("Please enter all fields", "On or more empty fields",
 		MessageBoxButtons::OK);
 		return;
 	}
 	try {
+		Database^ db = gcnew Database();
 		SqlConnection sqlConn(connString);
 		sqlConn.Open();
 
@@ -348,21 +372,24 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 			"(fullname, gender, inmateName, relationship, dateAndTime) VALUES " +
 			"(@fullname, @gender, @inmateName, @relationship, @dateAndTime);";
 
+		array<SqlParameter^>^ parameters = {
+			gcnew SqlParameter("@fullname", fullName),
+			gcnew SqlParameter("@gender", gender),
+			gcnew SqlParameter("@inmateName", inmateName),
+			gcnew SqlParameter("@relationship", relationship),
+			gcnew SqlParameter("@dateAndTime", dateAndTime.ToString("yyyy-MM-dd HH:mm:ss")),
+		};
+
+		/*
 		SqlCommand command(sqlQuery, % sqlConn);
 		command.Parameters->AddWithValue("@fullname", fullName);
 		command.Parameters->AddWithValue("@gender", gender);
 		command.Parameters->AddWithValue("@inmateName", inmateName);
 		command.Parameters->AddWithValue("@relationship", relationship);
-		command.Parameters->AddWithValue("@dateAndTime", dateAndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+		command.Parameters->AddWithValue("@dateAndTime", dateAndTime.ToString("yyyy-MM-dd HH:mm:ss"));*/
 
-		command.ExecuteNonQuery();
-		visitorData = gcnew VisitorData;
-		visitorData->FullName = fullName;
-		visitorData->Gender = gender;
-		visitorData->InmateName = inmateName;
-		visitorData->Relationship = relationship;
-		visitorData->DateAndTime = dateAndTime;
-
+		db->ExecuteQuery(sqlQuery, parameters);
+		RefreshDataGridView();
 		MessageBox::Show("Enjoy your visit.", "Welcome",
 			MessageBoxButtons::OK);
 	}
@@ -371,6 +398,20 @@ private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^
 	}
 }
 private: System::Void lblTitle_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dgvVisitor_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) { // Ensure the row index is valid
+		DataGridViewRow^ row = this->dgvVisitor->Rows[e->RowIndex];
+
+		txtName->Text = row->Cells["fullname"]->Value->ToString();
+		cbGender->Text = row->Cells["gender"]->Value->ToString();
+		txtInmate->Text = row->Cells["inmateName"]->Value->ToString();
+		txtRelationship->Text = row->Cells["relationship"]->Value->ToString();
+		dtDateTime->Value = Convert::ToDateTime(row->Cells["dateAndTime"]->Value->ToString());
+	}
+}
+private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
 }
 };
 }

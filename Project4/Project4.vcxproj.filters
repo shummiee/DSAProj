@@ -36,9 +36,6 @@
     <ClCompile Include="UC_Guards.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UC_Reports.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UC_VisitorLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UC_Guards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UC_Reports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UC_VisitorLog.h">

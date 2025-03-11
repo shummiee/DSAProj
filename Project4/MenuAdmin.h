@@ -2,10 +2,10 @@
 #include "UC_Home.h"
 #include "UC_Guards.h"
 #include "UC_Inmates.h"
-#include "UC_Reports.h"
 #include "UC_VisitorLog.h"
 #include "Database.h"
 #include "User.h"
+#include "MyForm1.h"
 
 namespace Project4 {
 
@@ -45,7 +45,7 @@ namespace Project4 {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ btnVisitor;
 
-	private: System::Windows::Forms::Button^ btnReport;
+
 
 	private: System::Windows::Forms::Button^ btnGuards;
 
@@ -54,6 +54,7 @@ namespace Project4 {
 	private: System::Windows::Forms::Button^ btnHome;
 	private: System::Windows::Forms::Panel^ panelUC;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ btnExit;
 
 	private: System::Void MenuAdmin_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -69,9 +70,6 @@ namespace Project4 {
 		}
 		if (!user->Permissions->Contains("Can Manage Guards")) {
 			btnGuards->Enabled = false;
-		}
-		if (!user->Permissions->Contains("Can View Reports")) {
-			btnReport->Enabled = false;
 		}
 		if (!user->Permissions->Contains("Can View Logs")) {
 			btnVisitor->Enabled = false;
@@ -111,15 +109,15 @@ namespace Project4 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuAdmin::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->btnVisitor = (gcnew System::Windows::Forms::Button());
-			this->btnReport = (gcnew System::Windows::Forms::Button());
 			this->btnGuards = (gcnew System::Windows::Forms::Button());
 			this->btnInmates = (gcnew System::Windows::Forms::Button());
 			this->btnHome = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panelUC = (gcnew System::Windows::Forms::Panel());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->btnExit = (gcnew System::Windows::Forms::Button());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panelUC->SuspendLayout();
@@ -130,8 +128,8 @@ namespace Project4 {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(144)), static_cast<System::Int32>(static_cast<System::Byte>(156)),
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
+			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->btnVisitor);
-			this->panel1->Controls->Add(this->btnReport);
 			this->panel1->Controls->Add(this->btnGuards);
 			this->panel1->Controls->Add(this->btnInmates);
 			this->panel1->Controls->Add(this->btnHome);
@@ -142,6 +140,22 @@ namespace Project4 {
 			this->panel1->Size = System::Drawing::Size(200, 500);
 			this->panel1->TabIndex = 0;
 			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
+				static_cast<System::Int32>(static_cast<System::Byte>(76)));
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button1->Location = System::Drawing::Point(49, 430);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(74, 33);
+			this->button1->TabIndex = 6;
+			this->button1->Text = L"EXIT";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &MenuAdmin::button1_Click);
+			// 
 			// btnVisitor
 			// 
 			this->btnVisitor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
@@ -150,29 +164,13 @@ namespace Project4 {
 			this->btnVisitor->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnVisitor->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnVisitor->Location = System::Drawing::Point(30, 366);
+			this->btnVisitor->Location = System::Drawing::Point(30, 306);
 			this->btnVisitor->Name = L"btnVisitor";
 			this->btnVisitor->Size = System::Drawing::Size(125, 45);
 			this->btnVisitor->TabIndex = 5;
 			this->btnVisitor->Text = L"VISITOR\'S LOG";
 			this->btnVisitor->UseVisualStyleBackColor = false;
 			this->btnVisitor->Click += gcnew System::EventHandler(this, &MenuAdmin::btnVisitor_Click);
-			// 
-			// btnReport
-			// 
-			this->btnReport->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(27)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
-				static_cast<System::Int32>(static_cast<System::Byte>(76)));
-			this->btnReport->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->btnReport->Font = (gcnew System::Drawing::Font(L"Franklin Gothic Heavy", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnReport->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->btnReport->Location = System::Drawing::Point(30, 305);
-			this->btnReport->Name = L"btnReport";
-			this->btnReport->Size = System::Drawing::Size(125, 45);
-			this->btnReport->TabIndex = 4;
-			this->btnReport->Text = L"REPORTS";
-			this->btnReport->UseVisualStyleBackColor = false;
-			this->btnReport->Click += gcnew System::EventHandler(this, &MenuAdmin::btnReport_Click);
 			// 
 			// btnGuards
 			// 
@@ -242,16 +240,6 @@ namespace Project4 {
 			this->panelUC->Size = System::Drawing::Size(600, 500);
 			this->panelUC->TabIndex = 1;
 			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(0, 0);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(600, 500);
-			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox2->TabIndex = 0;
-			this->pictureBox2->TabStop = false;
-			// 
 			// btnExit
 			// 
 			this->btnExit->BackColor = System::Drawing::SystemColors::ActiveBorder;
@@ -265,6 +253,16 @@ namespace Project4 {
 			this->btnExit->Text = L"X";
 			this->btnExit->UseVisualStyleBackColor = false;
 			this->btnExit->Click += gcnew System::EventHandler(this, &MenuAdmin::btnExit_Click);
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
+			this->pictureBox2->Location = System::Drawing::Point(0, 0);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(600, 500);
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox2->TabIndex = 0;
+			this->pictureBox2->TabStop = false;
 			// 
 			// MenuAdmin
 			// 
@@ -317,18 +315,6 @@ private: System::Void btnGuards_Click(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Access Denied: Only Wardens can access this section.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 }
-private: System::Void btnReport_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (user->Role == "Warden" || user->Role == "Admin") {
-	Project4::UC_Reports^ uc_report = gcnew Project4::UC_Reports();
-	panelUC->Controls->Clear();
-	uc_report->Dock = DockStyle::Fill;
-	panelUC->Controls->Add(uc_report);
-	uc_report->BringToFront();
-	}
-	else {
-		MessageBox::Show("Access Denied: Only Wardens and Admins can access this section.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-}
 
 private: System::Void btnVisitor_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (user->Role == "Warden" || user->Role == "Admin") {
@@ -345,5 +331,12 @@ private: System::Void btnVisitor_Click(System::Object^ sender, System::EventArgs
 private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 }
-};
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+
+	/*Project4::VisitorForm visitor;
+		visitor.ShowDialog();
+		this->Hide();*/
+}
+};	
 }

@@ -143,7 +143,7 @@ namespace Project4 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Project4::LOGIN login;
+			Project4::LOGIN login;
 		this->Hide();
 		login.ShowDialog();
 	}
